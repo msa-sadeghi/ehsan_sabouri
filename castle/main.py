@@ -3,6 +3,7 @@ import pygame
 import math
 
 from enemy import Enemy
+from crosshair import Crosshair
 
 pygame.init()
 
@@ -15,6 +16,8 @@ FPS = 60
 
 bg = pygame.image.load("img/bg.png")
 castle_img_100 = pygame.image.load("img/castle/castle_100.png")
+castle_img_50 = pygame.image.load("img/castle/castle_50.png")
+castle_img_25 = pygame.image.load("img/castle/castle_25.png")
 bullet_img = pygame.image.load("img/bullet.png")
 pygame.display.set_caption("castle game")
 bullet_group = pygame.sprite.Group()
@@ -43,17 +46,25 @@ print(enemy_animations[0])
 
 
 class Castle:
-    def __init__(self, image100, x, y, scale):
+    def __init__(self, image100,image50, image25, x, y, scale):
         self.health = 1000
         self.max_health = self.health
-
+        self.money = 0
+        self.score = 0
         self.image100 = pygame.transform.scale(image100, (image100.get_width() * scale, image100.get_height() * scale))
+        self.image50 = pygame.transform.scale(image50, (image50.get_width() * scale, image50.get_height() * scale))
+        self.image25 = pygame.transform.scale(image25, (image25.get_width() * scale, image25.get_height() * scale))
         self.rect = self.image100.get_rect(topleft=(x, y))
         self.fired = False
         self.last_shoot_time = pygame.time.get_ticks()
 
     def draw(self):
-        self.image = self.image100
+        if self.health <= 250:
+            self.image = self.image25
+        elif self.health <= 500:
+            self.image = self.image50
+        else:
+            self.image = self.image100
         screen.blit(self.image, self.rect)
         
     def shoot(self):
@@ -92,8 +103,9 @@ enemy_group = pygame.sprite.Group()
 enemy_1 = Enemy(enemy_health[0],enemy_animations[0], 200, SCREEN_HEIGHT-100, 1)
 enemy_group.add(enemy_1)
 
+crosshair = Crosshair(0.03)
 
-castle = Castle(castle_img_100, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 300, 0.2)
+castle = Castle(castle_img_100,castle_img_50, castle_img_25, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 300, 0.2)
 running = True
 while running:
     for event in pygame.event.get():
@@ -102,6 +114,7 @@ while running:
     screen.blit(bg, (0, 0))
     castle.draw()
     castle.shoot()
+    crosshair.draw(screen)
     bullet_group.update()
     bullet_group.draw(screen)
     enemy_group.draw(screen)
