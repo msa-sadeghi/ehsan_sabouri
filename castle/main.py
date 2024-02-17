@@ -1,14 +1,28 @@
 from pygame.sprite import Sprite
 import pygame
 import math
-
-from enemy_ import Enemy
-from crosshair_ import Crosshair
+from random import randint
+from enemy import Enemy
+from crosshair import Crosshair
 
 pygame.init()
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+level = 1
+level_difficulty = 0
+target_difficulty = 1000
+ENEMY_TIMER = 1000
+DIFFICULTY_MULTIPLIER = 1.1
+game_over = False
+next_level = False
+
+
+last_enemy = pygame.time.get_ticks()
+level_reset_time = pygame.time.get_ticks()
+enemies_alive = 0
+
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
@@ -24,8 +38,8 @@ bullet_group = pygame.sprite.Group()
 fire_sound = pygame.mixer.Sound("img/jump.wav")
 
 enemy_animations = []
-enemy_types = ['knight']
-enemy_health = [75]
+enemy_types = ['knight', 'goblin', 'purple_goblin', 'red_goblin']
+enemy_health = [75, 100, 125, 150]
 
 animation_types = ['walk', 'attack', 'death']
 
@@ -100,8 +114,7 @@ class Bullet(Sprite):
         self.rect.y += self.dy
 
 enemy_group = pygame.sprite.Group()
-enemy_1 = Enemy(enemy_health[0],enemy_animations[0], 200, SCREEN_HEIGHT-100, 1)
-enemy_group.add(enemy_1)
+
 
 crosshair = Crosshair(0.03)
 
@@ -119,5 +132,30 @@ while running:
     bullet_group.draw(screen)
     enemy_group.draw(screen)
     enemy_group.update(screen, castle, bullet_group)
+    if level_difficulty < target_difficulty:
+        if pygame.time.get_ticks() - last_enemy > ENEMY_TIMER:
+            i = randint(0, len(enemy_types) - 1)
+            enemy = Enemy(enemy_health[i], enemy_animations[i], -100, SCREEN_HEIGHT-100, 1)
+            enemy_group.add(enemy)
+            last_enemy = pygame.time.get_ticks()
+            level_difficulty += enemy_health[i]
+    if level_difficulty >= target_difficulty:
+        enemies_alive = 0
+        for enemy in enemy_group:
+            if enemy.alive:
+                enemies_alive += 1
+        if enemies_alive == 0 and not next_level:
+            next_level = True
+            level_reset_time = pygame.time.get_ticks()
+    if next_level:
+        # draw_text()
+        if pygame.time.get_ticks() - level_reset_time > 2000:
+            next_level = False
+            level += 1
+            last_enemy = pygame.time.get_ticks()
+            target_difficulty *= DIFFICULTY_MULTIPLIER
+            level_difficulty = 0
+            enemy_group.empty()
+        
     pygame.display.update()
     clock.tick(FPS)
