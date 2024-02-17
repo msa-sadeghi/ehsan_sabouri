@@ -1,64 +1,51 @@
+#_____________________________________#/ In The Name Of God \#_____________________________________#
 from pygame.sprite import Sprite
 import pygame
+#_______________________________
 class Enemy(Sprite):
-    def __init__(self, health, animation_list, x,y, speed):
+    def __init__(self,Health,Animation_List,X,Y,speed):
         super().__init__()
-        self.alive = True
+        self.Alive = True
         self.speed = speed
-        self.health = health
-        self.last_attack = pygame.time.get_ticks()
-        self.animation_list = animation_list
-        self.frame_index = 0
-        self.action = 0
-        self.attack_cooldown = 1000
-        self.update_time = pygame.time.get_ticks()
-        
-        self.image = self.animation_list[self.action][self.frame_index]
-        # TODO  ###########################################################
+        self.Health = Health
+        self.Last_Attack = pygame.time.get_ticks()
+        self.Animation_List = Animation_List
+        self.Frame_Index = 0
+        self.Action = 0
+        self.Attack_Cooldown = 1000
+        self.Update_Time = pygame.time.get_ticks()
+        self.image = self.Animation_List[self.Action][self.Frame_Index]
         self.rect = self.image.get_rect()
-        self.rect.center = (x,y)
-        
-        
-    def update(self, surface, target, bullet_group):
-        if self.alive:
-            if pygame.sprite.spritecollide(self, bullet_group, True):
-                self.health -= 25
+        self.rect.center = (X,Y)
+    def update(self,target,Bullet_Group):
+        if self.Alive:
+            if pygame.sprite.spritecollide(self,Bullet_Group,True):
+                self.Health -= 25
             if self.rect.right > target.rect.left:
-                self.update_action(1)
-                
-            if self.action == 0:
-                self.rect.x += self.speed
-            if self.action == 1:
-                if pygame.time.get_ticks() - self.last_attack > 200:
-                    target.health -= 25
-                    if target.health < 0:
-                        target.health = 0
-                    self.last_attack = pygame.time.get_ticks()
-                    
-            if self.health <= 0:
-                target.money += 100
-                target.score += 100
-                self.update_action(2)
-                self.alive = False
-                    
-                
-        self.update_animation()
-                
-    def update_action(self, new_action):
-        if self.action != new_action:
-            self.action = new_action
-            self.frame_index = 0
-            self.update_time = pygame.time.get_ticks()
-        
-               
-    def update_animation(self):
-        self.image = self.animation_list[self.action][self.frame_index]
-        if pygame.time.get_ticks() - self.update_time > 50:
-            self.update_time = pygame.time.get_ticks()
-            self.frame_index += 1
-        if self.frame_index >= len(self.animation_list[self.action]):
-            if self.action == 2:
-                self.frame_index = len(self.animation_list[self.action]) - 1
+                self.update_Animation(1)
+            if self.Action == 0:
+                self.rect.x +=self.speed
+            if self.Action == 1:
+                if pygame.time.get_ticks()-self.Last_Attack > 200:
+                    target.Health -= 25
+                    if target.Health < 0:
+                        target.Health = 0
+                    self.Last_Attack = pygame.time.get_ticks()
+            if self.Health <= 0:
+                target.Coin += 100
+                target.Points += 100
+                # self.update_action(2)
+                self.Alive = False
+
+        self.update_Animation()
+    def update_Animation(self):
+        self.image = self.Animation_List[self.Action][self.Frame_Index]
+        if pygame.time.get_ticks() - self.Update_Time > 50:
+            self.Update_Time = pygame.time.get_ticks()
+            self.Frame_Index += 1
+        if self.Frame_Index >= len(self.Animation_List[self.Action]):
+            if self.Action == 2:
+                self.Frame_Index = len(self.Animation_List[self.Action])
+
             else:
-                self.frame_index = 0
-        
+                self.Frame_Index = 0

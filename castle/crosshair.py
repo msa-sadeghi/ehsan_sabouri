@@ -1,7 +1,7 @@
 import pygame
 class Crosshair:
     def __init__(self, scale):
-        img = pygame.image.load("img/crosshair.png")
+        img = pygame.image.load("img\crosshair.png")
         w = img.get_width()
         h = img.get_height()
         self.image = pygame.transform.scale(img, (w * scale, h * scale))
