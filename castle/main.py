@@ -4,7 +4,7 @@ import math
 from random import randint
 from enemy import Enemy
 from crosshair import Crosshair
-
+from button import Button
 pygame.init()
 
 SCREEN_WIDTH = 800
@@ -54,7 +54,13 @@ for enemy in enemy_types:
         animation_list.append(temp_list)
     enemy_animations.append(animation_list)
             
-print(enemy_animations[0])        
+ 
+repair_img = pygame.image.load("img/repair.png")
+armour_img = pygame.image.load("img/armour.png")
+
+
+def show_info():
+    pass
 
 
 
@@ -86,7 +92,7 @@ class Castle:
         x_dist = mouse_position[0] - self.rect.midleft[0]
         y_dist = -(mouse_position[1] - self.rect.midleft[1])
         self.angle = math.atan2(y_dist, x_dist)
-        if pygame.mouse.get_pressed()[0] and not self.fired and pygame.time.get_ticks() - self.last_shoot_time > 400:
+        if pygame.mouse.get_pressed()[0] and not self.fired and pygame.time.get_ticks() - self.last_shoot_time > 400 and mouse_position[1] > 70:
             self.fired = True
             fire_sound.play()
             self.last_shoot_time = pygame.time.get_ticks()
@@ -94,6 +100,18 @@ class Castle:
             bullet_group.add(bullet)
         if not pygame.mouse.get_pressed()[0]:
             self.fired = False
+            
+    def repair(self):
+        if self.money >= 1000 and self.health <= self.max_health:
+            self.health += 500
+            self.money -= 1000
+            if self.health > self.max_health:
+                self.health = self.max_health
+                
+    def armour(self):
+        if self.money >= 500:
+            self.max_health += 250
+            self.money -= 500
         
 
 
@@ -119,6 +137,11 @@ enemy_group = pygame.sprite.Group()
 crosshair = Crosshair(0.03)
 
 castle = Castle(castle_img_100,castle_img_50, castle_img_25, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 300, 0.2)
+
+repair_button = Button(SCREEN_WIDTH - 220, 10, repair_img)
+armour_button = Button(SCREEN_WIDTH - 220, 10, armour_img)
+
+
 running = True
 while running:
     for event in pygame.event.get():
@@ -132,6 +155,10 @@ while running:
     bullet_group.draw(screen)
     enemy_group.draw(screen)
     enemy_group.update(screen, castle, bullet_group)
+    if repair_button.draw(screen):
+        castle.repair()
+    if armour_button.draw(screen):
+        castle.armour()
     if level_difficulty < target_difficulty:
         if pygame.time.get_ticks() - last_enemy > ENEMY_TIMER:
             i = randint(0, len(enemy_types) - 1)
