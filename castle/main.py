@@ -20,7 +20,7 @@ next_level = False
 
 
 max_towers = 4
-TOWER_COST = 5000
+TOWER_COST = 100
 
 tower_positions = [
     (SCREEN_WIDTH - 250, SCREEN_HEIGHT - 200),
@@ -169,6 +169,7 @@ class Tower(Sprite):
             x_distance = target_x - self.rect.midleft[0]
             self.angle = math.atan2(y_distance, x_distance)
             if pygame.time.get_ticks() - self.last_shot > 1000:
+                self.last_shot = pygame.time.get_ticks()
                 bullet = Bullet(bullet_img, self.rect.midleft[0], self.rect.midleft[1], self.angle)
                 bullet_group.add(bullet)
         
