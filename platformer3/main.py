@@ -10,6 +10,7 @@ moving_right = False
 
 def draw_bg():
     screen.fill((144, 201, 120))
+    pygame.draw.line(screen, (255,10,10), (0,300), (SCREEN_WIDTH, 300))
 
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -26,16 +27,27 @@ while running:
                 moving_left = True
             if event.key == pygame.K_RIGHT:
                 moving_right = True
+            if event.key == pygame.K_w:
+                player.jump = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moving_left = False
             if event.key == pygame.K_RIGHT:
                 moving_right = False
+    
+    
         
-                
-    player.move(moving_left, moving_right)
     draw_bg()
-    player.draw(screen)        
+    player.update_animation()            
+    player.draw(screen)
+    if player.alive:
+        if player.in_air:
+            player.update_action(2)
+        elif moving_left or moving_right:
+            player.update_action(1)
+        else:
+            player.update_action(0)        
+        player.move(moving_left, moving_right)
     s2.draw(screen)        
     pygame.display.update()
     clock.tick(FPS)

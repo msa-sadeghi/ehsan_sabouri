@@ -22,7 +22,7 @@ class Soldier(Sprite):
             for_any_animation_type = []
             number_of_images = len(os.listdir(f'./assets/images/{self.char_type}/{animation}'))
             for i in range(number_of_images):
-                img = pygame.image.load(f"./assets/images/{self.char_type}/{animation}/0.png")
+                img = pygame.image.load(f"./assets/images/{self.char_type}/{animation}/{i}.png")
                 img = pygame.transform.scale(img, (img.get_width()* scale, img.get_height()* scale))
                 for_any_animation_type.append(img)
             self.animation_list.append(for_any_animation_type)
@@ -35,9 +35,22 @@ class Soldier(Sprite):
         
     def draw(self,screen):
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
+    def update_animation(self):
+        self.image = self.animation_list[self.action][self.frame_index]
         
+        if pygame.time.get_ticks() - self.update_time > 100:
+            self.update_time = pygame.time.get_ticks()
+            self.frame_index += 1
+        if self.frame_index >= len(self.animation_list[self.action]):
+            self.frame_index = 0
+    
+    def update_action(self, new_action)   :
+        if new_action != self.action:
+            self.action = new_action
+            self.frame_index = 0
+            self.update_time = pygame.time.get_ticks()
     def move(self, moving_left, moving_right):
-        #TODO add jump and animations
+        
         dx = 0
         dy = 0
         if moving_left:
@@ -49,6 +62,17 @@ class Soldier(Sprite):
             dx = self.speed
             self.direction = 1
             self.flip = False
+            
+        if self.jump and not self.in_air:
+            self.vel_y = -12
+            self.jump = False
+            self.in_air = True
+        dy += self.vel_y
+        self.vel_y += 1   
+        
+        if self.rect.bottom + dy > 300:
+            dy = 300 - self.rect.bottom
+            self.in_air = False 
             
         self.rect.x += dx
         self.rect.y += dy
