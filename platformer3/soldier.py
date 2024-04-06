@@ -1,6 +1,7 @@
 from pygame.sprite import Sprite
 import pygame
 import os
+from bullet import Bullet
 
 class Soldier(Sprite):
     def __init__(self,char_type, x,y, scale, speed):
@@ -16,6 +17,7 @@ class Soldier(Sprite):
         self.animation_list = []
         self.frame_index = 0
         self.action = 0
+        self.ammo = 10
         self.update_time = pygame.time.get_ticks()
         animation_types = ('Idle', 'Run', 'Jump', 'Death')
         for animation in animation_types:
@@ -76,3 +78,8 @@ class Soldier(Sprite):
             
         self.rect.x += dx
         self.rect.y += dy
+        
+    def shoot(self)  :
+        if self.ammo>0:
+            Bullet(self.rect.centerx + 0.6 * self.rect.size[0] * self.direction, se)
+            

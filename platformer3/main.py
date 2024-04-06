@@ -7,6 +7,7 @@ clock = pygame.time.Clock()
 moving_left = False
 moving_right = False
 
+bullet_group = pygame.sprite.Group()
 
 def draw_bg():
     screen.fill((144, 201, 120))
@@ -40,6 +41,8 @@ while running:
     draw_bg()
     player.update_animation()            
     player.draw(screen)
+    bullet_group.update()
+    bullet_group.draw(screen)
     if player.alive:
         if player.in_air:
             player.update_action(2)
