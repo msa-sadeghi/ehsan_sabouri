@@ -17,7 +17,9 @@ class Soldier(Sprite):
         self.animation_list = []
         self.frame_index = 0
         self.action = 0
+        self.shoot_cooldown = 20
         self.ammo = 10
+        self.health = 100
         self.update_time = pygame.time.get_ticks()
         animation_types = ('Idle', 'Run', 'Jump', 'Death')
         for animation in animation_types:
@@ -44,7 +46,14 @@ class Soldier(Sprite):
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
         if self.frame_index >= len(self.animation_list[self.action]):
-            self.frame_index = 0
+            if self.action == 3:
+                self.frame_index = len(self.animation_list[self.action])-1
+            else:
+                self.frame_index = 0
+        if self.shoot_cooldown > 0:
+            self.shoot_cooldown -= 1
+            
+        self.check_alive()
     
     def update_action(self, new_action)   :
         if new_action != self.action:
@@ -78,8 +87,17 @@ class Soldier(Sprite):
             
         self.rect.x += dx
         self.rect.y += dy
-        
-    def shoot(self)  :
-        if self.ammo>0:
-            Bullet(self.rect.centerx + 0.6 * self.rect.size[0] * self.direction, se)
+    def check_alive(self)    :
+        if self.health <= 0:
+            self.health = 0
+            self.speed = 0
+            self.alive = False
+            self.update_action(3)
+    def shoot(self, group)  :
+        if self.ammo>0 and self.shoot_cooldown == 0:
+            self.shoot_cooldown = 20
+            
+            self.ammo -= 1
+            Bullet(self.rect.centerx + 0.6 * self.rect.size[0] * self.direction, self.rect.centery,\
+                self.direction, group)
             

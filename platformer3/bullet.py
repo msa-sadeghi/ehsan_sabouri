@@ -7,6 +7,7 @@ class Bullet(Sprite):
         self.image = bullet_image
         self.rect = self.image.get_rect(center = (x,y))
         self.direction = direction
+        group.add(self)
         self.group = group
         
     def update(self, player, enemy):

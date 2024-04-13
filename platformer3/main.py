@@ -17,7 +17,8 @@ def draw_bg():
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Platformer3")
 player = Soldier('player',200, 200, 3, 5)
-s2 = Soldier('enemy',400, 200, 3, 5)
+enemy = Soldier('enemy',400, 200, 3, 5)
+shoot = False
 running = True
 while running:
     for event in pygame.event.get():
@@ -30,20 +31,28 @@ while running:
                 moving_right = True
             if event.key == pygame.K_w:
                 player.jump = True
+            if event.key == pygame.K_SPACE:
+                shoot = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moving_left = False
             if event.key == pygame.K_RIGHT:
                 moving_right = False
+            if event.key == pygame.K_SPACE:
+                shoot = False
     
     
         
     draw_bg()
     player.update_animation()            
     player.draw(screen)
-    bullet_group.update()
+    bullet_group.update(player, enemy)
     bullet_group.draw(screen)
+    print("shoot********************************", len(bullet_group))
     if player.alive:
+        if shoot:
+            
+            player.shoot(bullet_group)
         if player.in_air:
             player.update_action(2)
         elif moving_left or moving_right:
@@ -51,7 +60,8 @@ while running:
         else:
             player.update_action(0)        
         player.move(moving_left, moving_right)
-    s2.draw(screen)        
+    enemy.draw(screen) 
+    enemy.update_animation()       
     pygame.display.update()
     clock.tick(FPS)
     
