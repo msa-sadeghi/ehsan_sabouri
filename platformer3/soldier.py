@@ -4,7 +4,7 @@ import os
 from bullet import Bullet
 
 class Soldier(Sprite):
-    def __init__(self,char_type, x,y, scale, speed):
+    def __init__(self,char_type, x,y, scale, speed, ammo, grenades):
         super().__init__()
         self.alive = True
         self.char_type = char_type
@@ -18,7 +18,8 @@ class Soldier(Sprite):
         self.frame_index = 0
         self.action = 0
         self.shoot_cooldown = 20
-        self.ammo = 10
+        self.ammo = ammo
+        self.grenades = grenades
         self.health = 100
         self.update_time = pygame.time.get_ticks()
         animation_types = ('Idle', 'Run', 'Jump', 'Death')

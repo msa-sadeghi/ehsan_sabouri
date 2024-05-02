@@ -1,5 +1,6 @@
 import pygame
 bullet_image = pygame.image.load("assets/images/icons/bullet.png")
+grenade_image = pygame.image.load("assets/images/icons/grenade.png")
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 640
 FPS = 60
