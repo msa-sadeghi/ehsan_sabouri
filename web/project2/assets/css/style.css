@@ -1,83 +1,100 @@
-@import url(_contact.css);
+
 @font-face {
-    font-family: Yekan;
-    src: url(/assets/fonts/Yekan.woff);
-  }
+    font-family: vazir;
+    src: url(../fonts/Vazirmatn-Regular.woff2);
+}
+@font-face {
+    font-family: vazir-bold;
+    src: url(../fonts/Vazirmatn-Bold.woff2);
+}
 
-  .nav{
-    background-color: #efefef;
-    overflow: hidden;
-    box-shadow: 1px 1px 1px #efefef;
-    position: sticky;
-    top:0 ;
-    z-index: 999;
-  }
-  .nav a{
-    float: right;
-    color: rgb(46,46,46);
-    text-align: center;
-    padding: 14px 16px;
-    font-size: 18px;
-  }
+.container-fluid-custom{
+    background-color: rgb(1,1,126);
+    line-height: 10px;
+}
+.container-fluid-custom .contacts i{
+    color: orange;
+}
+.container-fluid-custom .contacts i span{
+    color:#fff;
+    padding-left: 5px;
+    padding-right: 15px;
+}
+.container-fluid-custom .socialmedia{
+    direction: ltr;
+}
 
-.active{
-    border-bottom:1px solid red;
+.container-fluid-custom .socialmedia a  {
+    font-size: 20px;
+    color: #fff;
+    padding:10px;
+}
+
+.container-fluid-custom .socialmedia a:hover{
+    background-color: orange;
+}
+
+.container-fluid-custom .socialmedia a i:hover{
+    color: red;
 }
 
 
-.icon{
-    display: none;
-}
-.nav a:hover{
-    border-bottom:1px solid red;
-}
-
-  .clear-fix{
-    clear: both;
-  }
-
-
-@media screen and (max-width:600px) {
-    .nav a:not(:first-child){
+@media screen and (max-width:975px) {
+    .container-fluid-custom .contacts i:first-child{
         display: none;
     }
-    .nav a.icon{
-        display: block;
-        float: left;
-    }
-    .nav.responsive{
-        position: relative;
-    }
+}
 
-    .nav.responsive a{
-        display: block;
-        float: none;
-        text-align: right;
 
-    }
-    .nav.responsive a.icon{
-      position: absolute;
-      top: 0;
-      left:0;
+@media screen and (max-width:440px) {
+    .container-fluid-custom .socialmedia a:nth-child(-n + 2) {
+        display: none;
     }
     
 }
-.overlay{
-  width: 100%;
-  height: 90vh;
-  background-color: rgba(0,0,0,.3);
+
+nav{
+    background-color: #efefef;
+    line-height: 58px;
+    overflow: hidden;
+}
+nav a {
+    font-family: vazir-bold;
+    padding: 15px;
+    vertical-align: -7px;
+    float: right;
+    
+}
+nav a:hover{
+    border-bottom: 3px solid red;
+}
+nav a i{
+    vertical-align: -5px;
 }
 
-.header-title{
-  color:#fff;
-  margin: 290px;
-  max-width: 300px;
+nav .bars{
+    display: none;
 }
 
-.header-title a{
-  background-color: orange;
-  padding: 5px 1px;
-  border-radius: 5px 1px;
-  float: left;
-  margin-left:10px;
+@media screen and (max-width:600px) {
+    nav{
+        position: relative;
+    }
+    nav a:not(:first-child){
+        display: none;
+    }
+    
+    nav a.bars{
+        display: block;
+        float: left;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    nav.responsive a{
+            float: none;
+            display: block;
+       
+    }
+
 }

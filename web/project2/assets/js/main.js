@@ -1,12 +1,9 @@
-function myfunc(){
-    var x = document.getElementById("mynav");
-    if(x.className === "nav"){
-        x.className += " responsive";
+function clickOnBars(){
+    var nav_elem = document.getElementById("menu");
+    if (nav_elem.className === ""){
+        nav_elem.className += "responsive";
     }
     else{
-        x.className = "nav";
+        nav_elem.className = ""
     }
-
 }
-
-
