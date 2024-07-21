@@ -23,19 +23,35 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 moving_left = True
+                player.idle = False
             if event.key == pygame.K_RIGHT:
                 moving_right = True
+                player.idle = False
+            if event.key == pygame.K_SPACE:
+                player.jump = True
+                  
                 
                 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moving_left = False
+                player.idle = True
             if event.key == pygame.K_RIGHT:
                 moving_right = False
-            
+                player.idle = True
+            if event.key == pygame.K_SPACE:
+                player.jump = False
+        
     screen.fill((0,0,0))
     player.draw(screen) 
-    player.move(moving_left, moving_right)      
+    player.move(moving_left, moving_right)  
+    if moving_left or moving_right:
+        player.set_action(1)
+   
+        
+    else:
+        player.set_action(0)
+    player.animation()    
     pygame.display.update()
     clock.tick(FPS)
 

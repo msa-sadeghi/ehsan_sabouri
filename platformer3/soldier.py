@@ -26,19 +26,48 @@ class Solider(Sprite):
         self.max_health = 100
         self.ammo = ammo
         self.grenade = grenade
+        self.last_update = 0
+        self.jump = False
+        self.flip = False
+        self.vel_y = 0
         
     def draw(self, screen):
+        self.image = pygame.transform.flip(self.image, self.flip, False)
         screen.blit(self.image, self.rect)
         
     def move(self, moving_left, moving_right):
+        print(self.jump)
         dx = 0
         dy = 0
         if moving_left:
             dx -= 5
+            self.flip = True
+            
         if moving_right:
             dx += 5
+            self.flip = False
+        if self.jump:
             
+            self.vel_y = -13
+        dy += self.vel_y
+        self.vel_y += 1  
+        if self.rect.bottom + dy > 300:
+            dy = 300 - self.rect.bottom
+            self.vel_y = 0 
         self.rect.x += dx
         self.rect.y += dy
+    def animation(self):
+        self.image = self.all_images[self.action][self.image_number]
+        if pygame.time.get_ticks() - self.last_update > 100:
+            self.last_update = pygame.time.get_ticks()
+            self.image_number += 1
+            if self.image_number >= len(self.all_images):
+                self.image_number = 0
                 
+    def set_action(self, new_action):
+        if new_action != self.action:
+            self.action = new_action
+            self.image_number = 0
+        
+        
             
