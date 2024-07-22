@@ -7,7 +7,9 @@
     font-family: vazir-bold;
     src: url(../fonts/Vazirmatn-Bold.woff2);
 }
-
+body, * {
+    font-family: vazir;
+}
 .container-fluid-custom{
     background-color: rgb(1,1,126);
     line-height: 10px;
@@ -98,3 +100,62 @@ nav .bars{
     }
 
 }
+
+.overlay{
+    
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    
+}
+
+.overlay .header-title{
+    margin: 200px;
+    color:#fff;
+    max-width: 450px;
+}
+
+.overlay .header-title a{
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: orange;
+    padding: 7px 5px;
+    border-radius: 3px;
+    color: #fff;
+    float: left;
+}
+
+@media screen and (max-width: 1000px) {
+    .overlay .header-title{
+        margin: 0;
+        background-color: rgba(255, 255, 255, .5);
+        color: rgb(0, 0, 0);
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+    }
+    .overlay .header-title h1{
+        font-size: 20px;
+    }
+    .overlay .header-title h3{
+        font-size: 16px;
+    }
+
+}
+
+.project-title span::before{
+    content: '';
+    width: 45px;
+    height: 4px;
+    background-color: orange;
+    position: absolute;
+    top: 11px;
+    right: 495px;
+
+}
+
+/* TODO after */
