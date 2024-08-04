@@ -1,7 +1,7 @@
 from pygame.sprite import Sprite
 import pygame
 import os
-
+from bullet import Bullet
 class Solider(Sprite):
     def __init__(self, type, x,y, ammo, grenade):
         super().__init__()
@@ -30,6 +30,7 @@ class Solider(Sprite):
         self.jump = False
         self.flip = False
         self.vel_y = 0
+        self.direction = 1
         
     def draw(self, screen):
         self.image = pygame.transform.flip(self.image, self.flip, False)
@@ -42,10 +43,12 @@ class Solider(Sprite):
         if moving_left:
             dx -= 5
             self.flip = True
+            self.direction = -1
             
         if moving_right:
             dx += 5
             self.flip = False
+            self.direction = 1
         if self.jump:
             
             self.vel_y = -13
@@ -68,6 +71,13 @@ class Solider(Sprite):
         if new_action != self.action:
             self.action = new_action
             self.image_number = 0
+            
+    def shoot(self, bullet_group):
+        bullet = Bullet(self.rect.centerx + self.direction * self.rect.size[0] * 0.5,
+                        self.rect.centery, self.direction
+                        )
+        bullet_group.add(bullet)
+        
         
         
             

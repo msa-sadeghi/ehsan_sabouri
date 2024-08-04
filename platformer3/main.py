@@ -9,11 +9,11 @@ SCREEN_HEIGHT = 640
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 FPS = 60
 clock = pygame.time.Clock()
-
+bullet_group = pygame.sprite.Group()
 player = Solider("player", 100, 300, 20, 10)
 moving_left = False
 moving_right = False
-
+shoot = False
 running = True
 while running:
     for event in pygame.event.get():
@@ -29,6 +29,8 @@ while running:
                 player.idle = False
             if event.key == pygame.K_SPACE:
                 player.jump = True
+            if event.key == pygame.K_s:
+                shoot = True
                   
                 
                 
@@ -41,16 +43,22 @@ while running:
                 player.idle = True
             if event.key == pygame.K_SPACE:
                 player.jump = False
+            if event.key == pygame.K_s:
+                shoot = False
         
     screen.fill((0,0,0))
     player.draw(screen) 
     player.move(moving_left, moving_right)  
+    if shoot:
+        player.shoot(bullet_group)
     if moving_left or moving_right:
         player.set_action(1)
    
         
     else:
         player.set_action(0)
+    bullet_group.update()
+    bullet_group.draw(screen)
     player.animation()    
     pygame.display.update()
     clock.tick(FPS)
