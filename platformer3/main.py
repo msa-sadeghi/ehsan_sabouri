@@ -51,6 +51,7 @@ while running:
     player.move(moving_left, moving_right)  
     if shoot:
         player.shoot(bullet_group)
+        shoot = False
     if moving_left or moving_right:
         player.set_action(1)
    

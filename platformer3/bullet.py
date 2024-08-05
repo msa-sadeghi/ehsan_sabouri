@@ -4,7 +4,7 @@ import pygame
 class Bullet(Sprite):
     def __init__(self, x,y, direction):
         super().__init__()
-        self.speed = 10
+        self.speed = 6
         self.image = pygame.image.load("assets/images/icons/bullet.png")
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)

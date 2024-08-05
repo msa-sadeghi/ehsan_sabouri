@@ -1,5 +1,5 @@
 from pygame.sprite import Sprite
-import pygame
+import pygame 
 import os
 from bullet import Bullet
 class Solider(Sprite):
@@ -53,6 +53,7 @@ class Solider(Sprite):
             
             self.vel_y = -13
         dy += self.vel_y
+        
         self.vel_y += 1  
         if self.rect.bottom + dy > 300:
             dy = 300 - self.rect.bottom
@@ -73,10 +74,12 @@ class Solider(Sprite):
             self.image_number = 0
             
     def shoot(self, bullet_group):
-        bullet = Bullet(self.rect.centerx + self.direction * self.rect.size[0] * 0.5,
-                        self.rect.centery, self.direction
-                        )
-        bullet_group.add(bullet)
+        if self.ammo > 0:
+            bullet = Bullet(self.rect.centerx + self.direction * self.rect.size[0] * 0.5,
+                            self.rect.centery, self.direction
+                            )
+            bullet_group.add(bullet)
+            self.ammo -= 1
         
         
         
