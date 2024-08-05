@@ -153,9 +153,81 @@ nav .bars{
     height: 4px;
     background-color: orange;
     position: absolute;
+    top: 10px;
+    right: 108px;
+
+}
+.project-title span::after{
+    content: '';
+    width: 45px;
+    height: 4px;
+    background-color: orange;
+    position: absolute;
     top: 11px;
-    right: 495px;
+    right: -51px;
 
 }
 
-/* TODO after */
+.projects-section .card{
+    box-shadow: -10px -6px 35px -14px rgba(0,0,0,0.75);
+    
+}
+.projects-section .card img{
+    transition: 2s ease-in;
+}
+.projects-section .card:hover img{
+    transform: scale(1.2) rotate(10deg);
+
+}
+.projects-section .card:hover h5, p{
+    transition: 2s ease-in;
+}
+.projects-section .card:hover h5, p{
+    transform: scale(1.2);
+}
+.projects-section .card .card-body{
+    position: relative;
+}
+
+.projects-section .card .card-header{
+    overflow: hidden;
+}
+.projects-section .card .card-body  div.date-number{
+    background-color: orange;
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 50px;
+    text-align: center;
+}
+.projects-section .card .card-body  div.date-name{
+    background-color: rgb(29, 89, 230);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    text-align: center;
+}
+.projects-section .card .card-footer{
+    border-top: 1px solid #414040;
+    text-align: center;
+    margin-top: 20px;
+}
+.projects-section .card .card-footer div{
+    margin: 15px;
+    display: inline-block;
+}
+
+.projects-section .card .card-body h5, p{
+    padding: 20px;
+}
+.projects-section .card .card-body h5{
+    font-size: 16px;
+}
+.projects-section .card .card-body  p{
+font-size: 14px;
+}
+
+.projects-section{
+    background-color: antiquewhite;
+}
