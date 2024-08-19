@@ -21,7 +21,8 @@ a{
 
 [class^="col-"]{
     float: right;
-    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 .row::after{
     content: '';

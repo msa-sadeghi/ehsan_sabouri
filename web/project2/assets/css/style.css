@@ -231,3 +231,56 @@ font-size: 14px;
 .projects-section{
     background-color: antiquewhite;
 }
+.faq-wrapper .container{
+    /* background-color: #4c771a; */
+}
+
+.faq-wrapper .faq-right-wrapper{
+    margin-top: 20px;
+    
+   
+    box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
+   
+}
+
+.faq-wrapper .faq-right-wrapper > div {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #efefef;
+    border-radius: 20px;
+}
+
+.faq-wrapper .faq-right-wrapper  div i{
+    margin-left: 25px;
+    color: orangered;
+    font-size: 32px;
+    vertical-align: -7px;
+    float: left;
+}
+
+.faq-wrapper .faq-right-wrapper  div span{
+    font-weight: 900;
+}
+.faq-wrapper .faq-left-wrapper{
+    margin-top: 20px;    
+    box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
+   
+}
+
+.faq-left-wrapper label {
+    cursor: pointer;
+}
+
+.faq-left-wrapper .answer{
+    height: 0;
+}
+
+
+.faq-left-wrapper .tabs{
+    background-color: rgb(102, 102, 186);
+}
+
+.faq-left-wrapper .tabs .tab label{
+    background-color: chartreuse;
+    display: block;
+}
