@@ -264,7 +264,8 @@ font-size: 14px;
 .faq-wrapper .faq-left-wrapper{
     margin-top: 20px;    
     box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
-   
+   background-color: red;
+   overflow: hidden;
 }
 
 .faq-left-wrapper label {
@@ -280,6 +281,9 @@ font-size: 14px;
     background-color: rgb(102, 102, 186);
 }
 
+.faq-left-wrapper .tabs .tab{
+    background-color: red;
+}
 .faq-left-wrapper .tabs .tab label{
     background-color: chartreuse;
     display: block;
