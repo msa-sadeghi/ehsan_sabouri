@@ -264,16 +264,21 @@ font-size: 14px;
 .faq-wrapper .faq-left-wrapper{
     margin-top: 20px;    
     box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
-   background-color: red;
-   overflow: hidden;
+    background-color: rgb(249, 247, 247);
+    overflow: hidden;
 }
 
 .faq-left-wrapper label {
     cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
 }
 
 .faq-left-wrapper .answer{
     height: 0;
+    border-radius: 3px;
+    transition: .4s ease-in;
 }
 
 
@@ -282,9 +287,25 @@ font-size: 14px;
 }
 
 .faq-left-wrapper .tabs .tab{
-    background-color: red;
+    /* background-color: rgb(202, 202, 202); */
+    width: 100%;
+    overflow: hidden;
 }
 .faq-left-wrapper .tabs .tab label{
-    background-color: chartreuse;
+    background-color: rgb(233, 2, 253);
     display: block;
+}
+.faq-left-wrapper .tabs .tab label::after{
+    content: '\276f';
+    float: left;
+    transition: .4s ease-in;
+}
+.faq-left-wrapper .tabs .tab input[type="checkbox"]:checked ~ .answer{
+    height: 100px;
+}
+.faq-left-wrapper .answer p {
+    margin-right: 30px;
+}
+.faq-left-wrapper .tabs .tab input[type="checkbox"]:checked + label::after{
+    transform: rotate(-90deg);
 }
