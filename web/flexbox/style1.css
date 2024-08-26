@@ -1,0 +1,23 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 100%;
+    background-color: orangered;
+    display: flex;
+    justify-content: space-evenly;
+    height: 300px;
+    align-items: center;
+    /* flex-wrap: wrap-reverse; */
+}
+.container > div{
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    background-color: green;
+    margin: 10px;
+    font-size: 22px;
+    font-weight: bolder;
+}
