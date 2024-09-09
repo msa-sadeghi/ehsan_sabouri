@@ -1,0 +1,154 @@
+@font-face {
+    font-family: vazir-bold;
+    src: url(./assets/fonts/Vazirmatn-Bold.woff2);
+}
+@font-face {
+    font-family: vazir;
+    src: url(./assets/fonts/Vazirmatn-Regular.woff2);
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: rgb(21, 21, 21);
+}
+.container-fluid{
+    width: 100%;
+    background-color: #efefef;
+}
+.container-fluid nav {
+    font-family: vazir-bold;
+}
+
+.container-fluid nav ul {
+    display: flex;
+    justify-content: flex-start;
+    /* padding: 20px; */
+}
+.container-fluid nav ul li{
+    padding:20px;
+    transition: 1s ease-in;
+}
+.container-fluid nav ul li a{
+    text-align: center;
+}
+.container-fluid nav ul li:hover{
+    background-color: orangered;
+}
+
+
+.image-responsive{
+    width: 100%;
+    height: auto;
+}
+
+.container-fluid header{
+    display: flex;
+    position: relative;
+}
+.container-fluid header div{
+    position: absolute;
+    margin: 80px;
+    background-color: #e4c9c9;
+    padding: 45px;
+    border-radius: 12px;
+    font-family: vazir;
+}
+
+.container-fluid header div p{
+    margin-top: 15px;
+}
+
+
+
+
+.container {
+    max-width: 1200px;
+    display: flex;
+    margin: 10px auto;
+}
+
+.container aside {
+    flex: 25%;
+    height: 300px;
+    background-color: aquamarine;
+}
+
+.container main {
+    display: flex;
+    flex:75%;
+    height: 300px;
+    background-color: bisque;
+    flex-wrap: wrap;
+}
+
+.container main .card{
+    flex: 45%;
+    margin: 10px;
+    background-color: blue;
+}
+
+
+@media screen and (max-width:730px) {
+    
+    .container-fluid nav ul li a {
+        font-size: 14px;
+    }
+    .container-fluid header div {
+        position: absolute;
+        margin: 50px;
+        background-color: #d4d3d347;
+        padding: 25px; 
+        border-radius: 12px;
+        font-family: vazir;
+    }
+    .container-fluid header div h1{
+        font-size: 20px;
+    }
+    .container-fluid header div p{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    .container main {
+        flex-direction: column;
+    }
+    .container aside {
+        flex: 100%;
+    }
+    .container main {
+        flex: 100%;
+    }
+
+    
+}
+@media screen and (max-width:380px) {
+    .container-fluid nav ul li:last-child {
+        display: none;
+    }
+    .container-fluid header div {
+        position: absolute;
+        margin: 5px;
+        background-color: #9995956b;
+        padding: 15px; 
+        border-radius: 12px;
+        font-family: vazir;
+    }
+    .container {
+        flex-direction: column;
+    }
+    
+    .container aside {
+        flex: 100%;
+    }
+    .container main {
+        flex: 100%;
+    }
+
+    
+}
