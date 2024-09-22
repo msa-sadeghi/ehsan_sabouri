@@ -2,6 +2,7 @@ from pygame.sprite import Sprite
 import pygame 
 import os
 from bullet import Bullet
+from grenade import Grenade
 class Solider(Sprite):
     def __init__(self, type, x,y, ammo, grenade):
         super().__init__()
@@ -25,19 +26,20 @@ class Solider(Sprite):
         self.health = 100
         self.max_health = 100
         self.ammo = ammo
-        self.grenade = grenade
+        self.grenades = grenade
         self.last_update = 0
         self.jump = False
         self.flip = False
         self.vel_y = 0
         self.direction = 1
+        self.in_air = False
         
     def draw(self, screen):
         self.image = pygame.transform.flip(self.image, self.flip, False)
         screen.blit(self.image, self.rect)
         
     def move(self, moving_left, moving_right):
-        print(self.jump)
+        
         dx = 0
         dy = 0
         if moving_left:
@@ -50,7 +52,7 @@ class Solider(Sprite):
             self.flip = False
             self.direction = 1
         if self.jump:
-            
+            self.in_air = True
             self.vel_y = -13
         dy += self.vel_y
         
@@ -58,14 +60,16 @@ class Solider(Sprite):
         if self.rect.bottom + dy > 300:
             dy = 300 - self.rect.bottom
             self.vel_y = 0 
+            self.in_air = False
         self.rect.x += dx
         self.rect.y += dy
     def animation(self):
+        
         self.image = self.all_images[self.action][self.image_number]
         if pygame.time.get_ticks() - self.last_update > 100:
             self.last_update = pygame.time.get_ticks()
             self.image_number += 1
-            if self.image_number >= len(self.all_images):
+            if self.image_number >= len(self.all_images[self.action]):
                 self.image_number = 0
                 
     def set_action(self, new_action):
@@ -73,13 +77,20 @@ class Solider(Sprite):
             self.action = new_action
             self.image_number = 0
             
-    def shoot(self, bullet_group):
-        if self.ammo > 0:
-            bullet = Bullet(self.rect.centerx + self.direction * self.rect.size[0] * 0.5,
-                            self.rect.centery, self.direction
-                            )
-            bullet_group.add(bullet)
-            self.ammo -= 1
+    def shoot(self,type_, group):
+        if type_ == "bullet":
+            if self.ammo > 0:
+                bullet = Bullet(self.rect.centerx + self.direction * self.rect.size[0] * 0.5,
+                                self.rect.centery, self.direction
+                                )
+                group.add(bullet)
+                self.ammo -= 1
+        elif type_ == "grenade":
+            if self.grenades > 0:
+                Grenade(self.rect.centerx + 0.5 * self.rect.size[0] * self.direction,
+                        self.rect.centery, group, self.direction
+                        )
+                self.grenades -= 1
         
         
         

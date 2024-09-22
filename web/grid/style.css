@@ -66,3 +66,12 @@
 } */
 
 
+.test{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.test ~ div,.t{
+    background-color: orange;
+}
