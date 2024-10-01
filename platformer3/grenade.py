@@ -26,3 +26,4 @@ class Grenade(Sprite):
         
         self.rect.x += dx
         self.rect.y += dy
+        self.timer -= 1
