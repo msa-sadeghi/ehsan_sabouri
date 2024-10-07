@@ -76,6 +76,8 @@ class Solider(Sprite):
         if new_action != self.action:
             self.action = new_action
             self.image_number = 0
+    def is_alive(self):
+        pass
             
     def shoot(self,type_, group):
         if type_ == "bullet":

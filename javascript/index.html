@@ -6,15 +6,124 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <div id="demo">hello verybody</div>
-    <button onclick="document.write(x)">click me</button> -->
+    <div id="demo"></div>
     <script>
-      // console.log(document.getElementById("demo").innerText);
-      //window.alert(document.getElementById("demo").innerText);
-      //console.log(typeof undefined);
-      //console.log(typeof null);
-      console.log(null == undefined);
-      console.log(null === undefined);
+      {
+        /* var a = 2;
+      var b = 2;
+      var c = 3;
+      console.log(a === b && a === c);
+      console.log(a === b || a === c);
+      var age = prompt("How old are you?");
+       if (age > 20 && age <= 50) {
+        alert("You can use our website");
+      } else if (age > 50) {
+        alert("blalalalal");
+      } else {
+        alert("other things");
+      }
+      var age = prompt("How old are you?");
+      age > 20 && age <= 50 ? alert("yes") : alert("no");
+
+      var age = prompt("How old are you?");
+      age.toString();
+      String(age)
+      switch (age) {
+       case "36":
+       alert("yes");
+       break;
+      case "40":
+        alert("no");
+        break;
+
+       default:
+         alert("default");
+          break;
+       }
+      sum(5, 6);
+      function sum(a, b) {
+       if (b === undefined) {
+         b = 3;
+       }
+       alert(a + b);
+      }
+
+       var sayHi;
+       var age = 15;
+       if (age > 14) {
+         sayHi = function () {
+           alert("Hi 14");
+         };
+       } else {
+         sayHi = function () {
+           alert("hi");
+         };
+       }
+       sayHi();
+       console.log(sayHi()); */
+      }
+      /*var i = 10;
+      while (i) {
+        document.getElementById("demo").innerHTML += "<div>hello</div>";
+        i--;
+      }
+        */
+      /*for (var i = 0; i < 10; i++) {
+        if (i % 2 == 0) {
+          document.getElementById("demo").innerHTML += "<div>Hello</div>";
+        } else {
+          document.getElementById("demo").innerHTML += "<div>Bye</div>";
+        }
+      }*/
+      /*i = 0;
+      do {
+        document.getElementById("demo").innerHTML += "<div>hello</div>";
+        i++;
+      } while (i < 5);*/
+
+      /*var key = "calssName";
+
+      var student = {
+        name: "ali",
+        family: "rezaei",
+        walk: function () {
+          var i = 100;
+          while (i) {
+            document.getElementById("demo").innerHTML += "*";
+            i--;
+          }
+        },
+      };
+      for (item in student) {
+        console.log(item);
+        if (typeof student[item] == "function") {
+          student[item]();
+        } else {
+          console.log(student[item]);
+        }
+      }*/
+
+      var testString = "salam";
+      console.log(typeof testString);
+      testString = Number(testString);
+      console.log(testString, typeof testString);
+
+      var grade = "12.36";
+      grade = parseFloat(grade);
+      console.log(grade, typeof grade);
+      grade = parseInt(grade);
+      console.log(grade, typeof grade);
+
+      var y = "15";
+      y = +y;
+      console.log(y, typeof y);
+
+      var sum = 235;
+      sum = sum.toString();
+      console.log(sum, typeof sum);
+
+      var test1 = 0;
+      console.log(Boolean(test1));
     </script>
   </body>
 </html>

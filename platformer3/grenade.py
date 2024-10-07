@@ -1,4 +1,5 @@
 from pygame.sprite import Sprite
+from explosion import Explosion
 import pygame
 
 class Grenade(Sprite):
@@ -12,7 +13,7 @@ class Grenade(Sprite):
         self.timer = 100
         group.add(self)
         
-    def update(self):
+    def update(self, explosion_group, player, enemy_group):
         dx = self.direction * self.speed
         dy = self.vel_y
         
@@ -27,3 +28,17 @@ class Grenade(Sprite):
         self.rect.x += dx
         self.rect.y += dy
         self.timer -= 1
+        if self.timer <= 0:
+            self.kill()
+            explosion = Explosion(self.rect.x, self.rect.y)
+            explosion_group.add(explosion)
+            if abs(self.rect.centerx - player.rect.centerx) < 100 and \
+                abs(self.rect.centery - player.rect.centery) < 100:
+                    player.health -= 50
+            for enemy in enemy_group:
+                if abs(self.rect.centerx - enemy.rect.centerx) < 100 and \
+                abs(self.rect.centery - enemy.rect.centery) < 100:
+                    enemy.health -= 50
+                
+            
+            

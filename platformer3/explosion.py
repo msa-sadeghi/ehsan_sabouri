@@ -18,6 +18,12 @@ class Explosion(Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.counter = 0
+        self.last_anim_time = 0
         
     def update(self):
-        pass
+        if pygame.time.get_ticks() - self.last_anim_time > 100:
+            self.image_number += 1
+            if self.image_number >= len(self.images):
+                self.kill()
+            else:
+                self.image = self.images[self.image_number]
