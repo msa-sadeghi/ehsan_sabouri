@@ -15,7 +15,7 @@ class Solider(Sprite):
                 img = pygame.image.load(f"assets/images/{type}/{anim}/{i}.png")
                 img_w = img.get_width()
                 img_h = img.get_height()
-                img = pygame.transform.scale(img, (img_w * 3, img_h * 3))
+                img = pygame.transform.scale(img, (img_w * 2, img_h * 2))
                 temp.append(img)
             self.all_images.append(temp)
             
@@ -33,10 +33,17 @@ class Solider(Sprite):
         self.vel_y = 0
         self.direction = 1
         self.in_air = False
+        self.alive = True
+        self.vision = pygame.Rect(self.rect.x,self.rect.y, 150, 20)
+        self.idling = True
+        self.type = type
         
     def draw(self, screen):
         self.image = pygame.transform.flip(self.image, self.flip, False)
         screen.blit(self.image, self.rect)
+        pygame.draw.line(screen, "red", (0,300), (600,300))
+    def update(self)    :
+        self.animation()
         
     def move(self, moving_left, moving_right):
         
@@ -58,6 +65,7 @@ class Solider(Sprite):
         
         self.vel_y += 1  
         if self.rect.bottom + dy > 300:
+            
             dy = 300 - self.rect.bottom
             self.vel_y = 0 
             self.in_air = False
@@ -93,6 +101,34 @@ class Solider(Sprite):
                         self.rect.centery, group, self.direction
                         )
                 self.grenades -= 1
+                
+    def ai(self, player, bullet_group,ai_moving_left, ai_moving_right, screen):
+        self.vision.center = (self.rect.centerx + 120 * self.direction, self.rect.centery)
+        pygame.draw.rect(screen, "red", self.vision, 3)
+        if self.alive and player.alive:
+            
+            if self.vision.colliderect(player.rect):
+                
+                self.set_action(0)
+                self.shoot("bullet", bullet_group)
+            else:
+                if self.idling == False:
+                    if self.direction == 1:
+                        ai_moving_right = True
+                    else:
+                        ai_moving_right = False
+                    ai_moving_left = not ai_moving_right
+                    self.move(ai_moving_left, ai_moving_right)
+                    self.set_action(1)
+                else:
+                    self.move(ai_moving_left, ai_moving_right)
+                    self.set_action(1)
+        return ai_moving_left, ai_moving_right
+                
+            
+            
+            
+        
         
         
         

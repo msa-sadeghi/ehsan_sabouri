@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="number"></div>
+    <script>
+      var student = {
+        name: "Ali",
+        family: "blalalal",
+        age: 25,
+        "class number": 1,
+        walk: function () {
+          for (var j = 0; j < 5; j++) {
+            console.log(">", j);
+          }
+        },
+      };
+      if ("name" in student) {
+        console.log("name exists");
+      }
+
+      for (f in student) {
+        if (typeof student[f] === "function") {
+          student[f]();
+        } else console.log(student[f]);
+      }
+    </script>
+  </body>
+</html>

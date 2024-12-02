@@ -43,3 +43,77 @@
 #     return array
 
 # print(insertion_sort(x))
+# import random
+
+# numbers = [random.randint(1,100) for _ in range(100)]
+# print(numbers)
+# x = 10
+# numbers.sort()
+# n = 11
+# while len(numbers)//2:
+#     mid = numbers[len(numbers)//2]
+#     if n < mid:
+#         numbers = numbers[:len(numbers)//2]
+#     elif n>mid:
+#         numbers = numbers[len(numbers)//2:]
+#     else:
+#         print("found")
+#         break
+    
+
+# import random
+# random.seed(12)
+# numbers = [random.randint(1,100) for _ in range(10)]
+# print(numbers)
+# numbers.reverse()
+# print(numbers)
+
+# animals = [
+#     "Tiger",	"Lion",	"Elephant",
+# "Aardvark",	"Antelope",	"Alpine Goat",
+# "Bearded Dragon",	"Royal Bengal Tiger",	"Flying Squirrel",
+# "Eagle",	"Eel",	"Asiatic" ,"Lion",
+# "Beaver",	"Emperor", "Penguin",	"Baboon"
+# ]
+
+# def my_function(names):
+#     c = 0
+#     for n in names:
+#         if n[0].lower() == "a":
+#             c += 1
+#             print(n)
+#     return c
+# print(my_function(animals))
+
+
+
+# def f1():
+#     count = 0
+#     while True:
+#         n = int(input("enter a number:> "))
+#         if n <= 0:
+#             break
+#         count += 1
+#     return count
+        
+# print(f1())
+        
+        
+# def f2(number):
+#     return number[::-1]
+# print(f2("15"))
+# print(f2("sara"))
+
+
+def is_prime_number(num):
+    if num <= 1:
+        return False
+    res = True
+    for x in range(2, num):
+        if num % x == 0:
+            res = False
+            break
+    return res
+
+for i in range(100):
+    print(f"{i} => {is_prime_number(i)}")

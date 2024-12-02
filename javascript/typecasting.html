@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*var test = "hi";
+      console.log(test, typeof test);
+      test = Number(test);
+      console.log(test, typeof test);
+      test = "1.56";
+      console.log(test, typeof test);
+      test = Number(test);
+      console.log(test, typeof test);
+      test = "1.56";
+      test = parseFloat(test);
+      console.log(test, typeof test);
+      test = "1.56";
+      test = parseInt(test);
+      console.log(test, typeof test);
+      test = 1.56;
+      test = String(test);
+      console.log(test, typeof test);
+      test = 1.56;
+      test = test.toString();
+      console.log(test, typeof test);
+
+      var x = 12;
+      x = Boolean(x);
+      console.log(x, typeof x);
+      var x = 0;
+      x = Boolean(x);
+      console.log(x, typeof x);*/
+
+      var fruits = ["apple", "banana", "lemon"];
+      /*console.log(fruits, typeof fruits);
+      console.log(Array.isArray(fruits));
+      console.log(fruits instanceof Array);
+      fruits.push("grape");
+      console.log(fruits);
+      console.log(fruits.length);
+      for (var i = 0; i < fruits.length; i++) {
+        console.log(fruits[i]);
+      }*/
+
+      /*var fruits = ["apple", "banana", "lemon"];
+      var myFunction = function (value, index) {
+        console.log(value, index);
+      };
+      fruits.forEach(myFunction);*/
+
+      /*var numbers = [1, 34, 4, 67];
+      var output = numbers.filter(function (value) {
+        return value > 10;
+      });
+      output.forEach(function (val, i) {
+        console.log(val, i);
+      });
+      var output = numbers.map(function (val) {
+        return val * 2;
+      });
+      console.log(output);
+*/
+      /*numbers = [1, 34, 4, 67];
+      var output = numbers.every(function (value) {
+        return value > 10;
+      });
+      console.log(output);
+      numbers = [1, 34, 4, 67];
+      var output = numbers.some(function (value) {
+        return value > 60;
+      });
+      console.log(output);
+      numbers = [1, 34, 4, 67];
+      console.log(numbers.indexOf(34));
+      var fruits = ["apple", "banana", "lemon"];
+      console.log(fruits.sort());
+      numbers.sort(function (a, b) {
+        return a - b;
+      });
+      console.log(numbers);*/
+
+      /*numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      var s = 0;
+      for (var i = 0; i < numbers.length; i++) {
+        s += numbers[i];
+      }
+      console.log(s);
+      var s = 0;
+      numbers.forEach(function (n) {
+        s += n;
+      });
+      console.log(s);*/
+
+      /*function my(number) {
+        for (var i = 1; i <= 10; i++) {
+          console.log(i * number);
+        }
+      }
+
+      my(5);*/
+
+      /*function my(arr, num) {
+        for (var i = 0; i < arr.length; i++) {
+          if (num === arr[i]) {
+            return true;
+          } else return false;
+        }
+      }
+*/
+      /*function my(arr, num) {
+        var res = arr.find(function (x, i) {
+          if (num === x) {
+            console.log(i);
+            return true
+          }
+        });
+        return res;
+      }
+
+      console.log(my([1, 2, 1, 1, 1, 1], 1));*/
+
+      function reverseArray(arr) {
+        var temp = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+          temp.push(arr[i]);
+        }
+        console.log(temp);
+      }
+      reverseArray([1, 2, 3, 4, 5, 6]);
+    </script>
+  </body>
+</html>

@@ -16,8 +16,11 @@ explosion_group = pygame.sprite.Group()
 enemy_group = pygame.sprite.Group()
 
 player = Solider("player", 100, 300, 20, 10)
+enemy = Solider("enemy", 500, 300, 20, 0)
+enemy_group.add(enemy)
 moving_left = False
 moving_right = False
+ai_moving_left, ai_moving_right = (True, False)
 shoot = False
 grenade = False
 grenade_thrown = False
@@ -77,9 +80,15 @@ while running:
     bullet_group.draw(screen)
     grenade_group.update(explosion_group, player, enemy_group)
     grenade_group.draw(screen)
+    
+    enemy_group.update()
+    for enemy in enemy_group:
+        enemy.draw(screen)
+        ai_moving_left, ai_moving_right = enemy.ai(player, bullet_group, ai_moving_left, ai_moving_right, screen)
+         
     explosion_group.update()
     explosion_group.draw(screen)
-    player.animation()    
+    player.animation()  
     pygame.display.update()
     clock.tick(FPS)
 
