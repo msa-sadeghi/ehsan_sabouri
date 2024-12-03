@@ -86,12 +86,12 @@ print(f"{Fore.RED} {Back.GREEN} Hello")
 #     print("adasd")
 
 
-x = {}
+# x = {}
 
-key = input("enter a key: ")
-value = input("enter a value: ")
-try:
-    x[key] += value
-except KeyError:
-    print("Error")
-print(x)
+# key = input("enter a key: ")
+# value = input("enter a value: ")
+# try:
+#     x[key] += value
+# except KeyError:
+#     print("Error")
+# print(x)
