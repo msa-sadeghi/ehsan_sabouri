@@ -10,14 +10,19 @@ SCREEN_HEIGHT = 640
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 FPS = 60
 clock = pygame.time.Clock()
-bullet_group = pygame.sprite.Group()
+player_bullet_group = pygame.sprite.Group()
+enemy_bullet_group = pygame.sprite.Group()
 grenade_group = pygame.sprite.Group()
 explosion_group = pygame.sprite.Group()
 enemy_group = pygame.sprite.Group()
 
+
 player = Solider("player", 100, 300, 20, 10)
-enemy = Solider("enemy", 500, 300, 20, 0)
-enemy_group.add(enemy)
+
+enemy1 = Solider("enemy", 600, 300, 20, 0)
+enemy2 = Solider("enemy", 400, 300, 20, 0)
+enemy_group.add(enemy1)
+enemy_group.add(enemy2)
 moving_left = False
 moving_right = False
 ai_moving_left, ai_moving_right = (True, False)
@@ -64,7 +69,7 @@ while running:
     player.draw(screen) 
     player.move(moving_left, moving_right)  
     if shoot:
-        player.shoot("bullet", bullet_group)
+        player.shoot("bullet", player_bullet_group)
         shoot = False
     elif grenade and not grenade_thrown:
         player.shoot("grenade", grenade_group)
@@ -76,20 +81,25 @@ while running:
         
     else:
         player.set_action(0)
-    bullet_group.update()
-    bullet_group.draw(screen)
+    player_bullet_group.update(player, enemy_group, player_bullet_group,enemy_bullet_group)
+    enemy_bullet_group.update(player, enemy_group, player_bullet_group,enemy_bullet_group)
+    
+    player_bullet_group.draw(screen)
+    enemy_bullet_group.draw(screen)
     grenade_group.update(explosion_group, player, enemy_group)
     grenade_group.draw(screen)
-    
+    player.update()
+     
     enemy_group.update()
     for enemy in enemy_group:
         enemy.draw(screen)
-        ai_moving_left, ai_moving_right = enemy.ai(player, bullet_group, ai_moving_left, ai_moving_right, screen)
+        ai_moving_left, ai_moving_right = enemy.ai(player, enemy_bullet_group, ai_moving_left, ai_moving_right, screen)
          
     explosion_group.update()
     explosion_group.draw(screen)
-    player.animation()  
     pygame.display.update()
+    print("player_health", player.health)
+    # print("enemy_health", enemy.health)
     clock.tick(FPS)
 
 os.system("cls")

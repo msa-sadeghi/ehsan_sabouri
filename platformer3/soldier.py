@@ -3,6 +3,7 @@ import pygame
 import os
 from bullet import Bullet
 from grenade import Grenade
+import random
 class Solider(Sprite):
     def __init__(self, type, x,y, ammo, grenade):
         super().__init__()
@@ -37,6 +38,8 @@ class Solider(Sprite):
         self.vision = pygame.Rect(self.rect.x,self.rect.y, 150, 20)
         self.idling = True
         self.type = type
+        self.last_shoot_time = 0
+        self.move_counter = 0
         
     def draw(self, screen):
         self.image = pygame.transform.flip(self.image, self.flip, False)
@@ -44,6 +47,7 @@ class Solider(Sprite):
         pygame.draw.line(screen, "red", (0,300), (600,300))
     def update(self)    :
         self.animation()
+        self.is_alive()
         
     def move(self, moving_left, moving_right):
         
@@ -78,18 +82,25 @@ class Solider(Sprite):
             self.last_update = pygame.time.get_ticks()
             self.image_number += 1
             if self.image_number >= len(self.all_images[self.action]):
-                self.image_number = 0
+                if self.action == 3:
+                    self.image_number = len(self.all_images[self.action])- 1
+                else:
+                    self.image_number = 0
                 
     def set_action(self, new_action):
         if new_action != self.action:
             self.action = new_action
             self.image_number = 0
     def is_alive(self):
-        pass
+        if self.health <= 0:
+            self.health = 0
+            self.alive = False
+            self.set_action(3)
             
     def shoot(self,type_, group):
         if type_ == "bullet":
-            if self.ammo > 0:
+            if self.ammo > 0 and pygame.time.get_ticks() - self.last_shoot_time > 200:
+                self.last_shoot_time = pygame.time.get_ticks()
                 bullet = Bullet(self.rect.centerx + self.direction * self.rect.size[0] * 0.5,
                                 self.rect.centery, self.direction
                                 )
@@ -103,14 +114,19 @@ class Solider(Sprite):
                 self.grenades -= 1
                 
     def ai(self, player, bullet_group,ai_moving_left, ai_moving_right, screen):
-        self.vision.center = (self.rect.centerx + 120 * self.direction, self.rect.centery)
-        pygame.draw.rect(screen, "red", self.vision, 3)
+        
+        # pygame.draw.rect(screen, "red", self.vision, 3)
+        
         if self.alive and player.alive:
-            
+            if self.idling == False and random.randint(1,200) == 1:
+                self.set_action(0)
+                self.idling = True
+                self.move_counter = 50
             if self.vision.colliderect(player.rect):
                 
                 self.set_action(0)
                 self.shoot("bullet", bullet_group)
+                self.idling = True
             else:
                 if self.idling == False:
                     if self.direction == 1:
@@ -120,9 +136,16 @@ class Solider(Sprite):
                     ai_moving_left = not ai_moving_right
                     self.move(ai_moving_left, ai_moving_right)
                     self.set_action(1)
+                    self.vision.center = (self.rect.centerx + 120 * self.direction, self.rect.centery)
+                    self.move_counter += 1
+                    if self.move_counter > 50:
+                        self.direction *= -1
+                        self.move_counter *= -1
                 else:
                     self.move(ai_moving_left, ai_moving_right)
                     self.set_action(1)
+                    self.idling = False
+                    
         return ai_moving_left, ai_moving_right
                 
             

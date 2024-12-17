@@ -21,7 +21,8 @@ class Explosion(Sprite):
         self.last_anim_time = 0
         
     def update(self):
-        if pygame.time.get_ticks() - self.last_anim_time > 100:
+        if pygame.time.get_ticks() - self.last_anim_time > 200:
+            self.last_anim_time = pygame.time.get_ticks()
             self.image_number += 1
             if self.image_number >= len(self.images):
                 self.kill()
