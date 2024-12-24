@@ -40,6 +40,8 @@ class Solider(Sprite):
         self.type = type
         self.last_shoot_time = 0
         self.move_counter = 0
+        self.injury = False
+        self.last_injury_time = 0
         
     def draw(self, screen):
         self.image = pygame.transform.flip(self.image, self.flip, False)
@@ -51,6 +53,7 @@ class Solider(Sprite):
         
     def move(self, moving_left, moving_right):
         
+            
         dx = 0
         dy = 0
         if moving_left:
@@ -71,8 +74,17 @@ class Solider(Sprite):
         if self.rect.bottom + dy > 300:
             
             dy = 300 - self.rect.bottom
-            self.vel_y = 0 
+            
+            if self.injury:
+                print("++++++++++++++++")
+                self.vel_y = -10 
+                self.injury = False  
+            else:
+                self.vel_y = 0 
             self.in_air = False
+            
+        if self.type == "enemy":
+            print(dy)
         self.rect.x += dx
         self.rect.y += dy
     def animation(self):
@@ -149,7 +161,8 @@ class Solider(Sprite):
         return ai_moving_left, ai_moving_right
                 
             
-            
+   
+               
             
         
         

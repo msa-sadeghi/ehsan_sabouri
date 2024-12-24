@@ -39,6 +39,7 @@ class Grenade(Sprite):
                 if abs(self.rect.centerx - enemy.rect.centerx) < 100 and \
                 abs(self.rect.centery - enemy.rect.centery) < 100:
                     enemy.health -= 50
+                    enemy.injury = True
                 
             
             

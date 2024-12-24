@@ -16,12 +16,14 @@ class Bullet(Sprite):
         self.rect.x += self.speed * self.direction
         if self.rect.right < 0 or self.rect.left > 800:
             self.kill()
-        if pygame.sprite.spritecollide(player, enemy_bullet_group, True) :
+        if pygame.sprite.spritecollide(player, enemy_bullet_group, False) :
             if player.alive:
-                player.health -= 25   
+                player.health -= 25
+                self.kill()   
         for enemy in enemy_group.sprites():
-            if pygame.sprite.spritecollide(enemy, player_bullet_group, True) :
+            if pygame.sprite.spritecollide(enemy, player_bullet_group, False) :
                 if enemy.alive:
-                    enemy.health -= 25   
+                    enemy.health -= 25
+                    self.kill()   
         
         

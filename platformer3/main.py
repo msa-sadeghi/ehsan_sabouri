@@ -19,10 +19,10 @@ enemy_group = pygame.sprite.Group()
 
 player = Solider("player", 100, 300, 20, 10)
 
-enemy1 = Solider("enemy", 600, 300, 20, 0)
-enemy2 = Solider("enemy", 400, 300, 20, 0)
+enemy1 = Solider("enemy", 600, 300, 0, 0)
+# enemy2 = Solider("enemy", 400, 300, 0, 0)
 enemy_group.add(enemy1)
-enemy_group.add(enemy2)
+# enemy_group.add(enemy2)
 moving_left = False
 moving_right = False
 ai_moving_left, ai_moving_right = (True, False)
@@ -67,22 +67,23 @@ while running:
         
     screen.fill((0,0,0))
     player.draw(screen) 
-    player.move(moving_left, moving_right)  
-    if shoot:
-        player.shoot("bullet", player_bullet_group)
-        shoot = False
-    elif grenade and not grenade_thrown:
-        player.shoot("grenade", grenade_group)
-        grenade_thrown = True
-    if moving_left or moving_right:
-        player.set_action(1)
-    elif player.in_air:
-        player.set_action(2)
-        
-    else:
-        player.set_action(0)
-    player_bullet_group.update(player, enemy_group, player_bullet_group,enemy_bullet_group)
+    if player.alive:
+        if shoot:
+            player.shoot("bullet", player_bullet_group)
+            shoot = False
+        elif grenade and not grenade_thrown:
+            player.shoot("grenade", grenade_group)
+            grenade_thrown = True
+        if moving_left or moving_right:
+            player.set_action(1)
+        elif player.in_air:
+            player.set_action(2)
+            
+        else:
+            player.set_action(0)
+        player.move(moving_left, moving_right)  
     enemy_bullet_group.update(player, enemy_group, player_bullet_group,enemy_bullet_group)
+    player_bullet_group.update(player, enemy_group, player_bullet_group,enemy_bullet_group)
     
     player_bullet_group.draw(screen)
     enemy_bullet_group.draw(screen)
@@ -90,16 +91,18 @@ while running:
     grenade_group.draw(screen)
     player.update()
      
-    enemy_group.update()
+    # enemy_group.update()
     for enemy in enemy_group:
+        enemy.update()
+        
         enemy.draw(screen)
         ai_moving_left, ai_moving_right = enemy.ai(player, enemy_bullet_group, ai_moving_left, ai_moving_right, screen)
          
     explosion_group.update()
     explosion_group.draw(screen)
     pygame.display.update()
-    print("player_health", player.health)
-    # print("enemy_health", enemy.health)
+    
+    
     clock.tick(FPS)
 
 os.system("cls")
