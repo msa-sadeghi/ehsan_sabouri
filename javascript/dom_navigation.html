@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="text-align: center">
+    <h1>hello</h1>
+    <hr />
+    <div class="d">
+      <ul>
+        <li>list one</li>
+      </ul>
+      <!-- <div>test</div> -->
+    </div>
+    <table id="table1">
+      <thead>
+        <tr>
+          <th>first column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>content of first column</td>
+        </tr>
+        <tr>
+          <td>content of second column</td>
+        </tr>
+      </tbody>
+    </table>
+    <table id="table2-test"></table>
+    <button id="test1">click here</button>
+    <script>
+      let body = document.body;
+      //console.log(body);
+      let fifthChild = body.childNodes[5];
+      //console.log(fifthChild);
+      let x = fifthChild.childNodes[1];
+      //console.log(x);
+      let childCount = fifthChild.childNodes.length;
+      for (let i = 0; i < childCount; i++) {
+        console.log(fifthChild.childNodes[i]);
+      }
+    </script>
+  </body>
+</html>

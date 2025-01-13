@@ -1,7 +1,7 @@
 import pygame
 import os
 from soldier import Solider
-
+from healthbar import HealthBar
 pygame.init()
 
 SCREEN_WIDTH = 800
@@ -17,9 +17,11 @@ explosion_group = pygame.sprite.Group()
 enemy_group = pygame.sprite.Group()
 
 
-player = Solider("player", 100, 300, 20, 10)
 
-enemy1 = Solider("enemy", 600, 300, 0, 0)
+player = Solider("player", 100, 300, 20, 10)
+my_healthbar = HealthBar(10,20, player.health, player.max_health)
+
+enemy1 = Solider("enemy", 600, 300, 10, 0)
 # enemy2 = Solider("enemy", 400, 300, 0, 0)
 enemy_group.add(enemy1)
 # enemy_group.add(enemy2)
@@ -66,6 +68,7 @@ while running:
                 grenade_thrown = False
         
     screen.fill((0,0,0))
+    my_healthbar.draw(screen, player.health)
     player.draw(screen) 
     if player.alive:
         if shoot:

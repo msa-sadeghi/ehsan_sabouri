@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+        quibusdam sed. Aperiam aliquam enim eos aspernatur sed accusamus
+        quibusdam. Error nihil provident corporis accusamus et aliquam
+        molestias, perferendis repellendus voluptates?
+      </p>
+      <p id="my_p">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+        quibusdam sed. Aperiam aliquam enim eos aspernatur sed accusamus
+        quibusdam. Error nihil provident corporis accusamus et aliquam
+        molestias, perferendis repellendus voluptates?
+      </p>
+      <p class="my_p_class">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+        quibusdam sed. Aperiam aliquam enim eos aspernatur sed accusamus
+        quibusdam. Error nihil provident corporis accusamus et aliquam
+        molestias, perferendis repellendus voluptates?
+      </p>
+      <p class="my_p_class_3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+        quibusdam sed. Aperiam aliquam enim eos aspernatur sed accusamus
+        quibusdam. Error nihil provident corporis accusamus et aliquam
+        molestias, perferendis repellendus voluptates?
+      </p>
+    </div>
+    <div class="test">
+      <input type="text" />
+      <input
+        type="checkbox"
+        name="myCheckbox"
+        checked
+        test="mytest"
+        data-my-item="xxxxx"
+        data-item="vvvv"
+      />
+    </div>
+
+    <script>
+      let myInput = document.getElementsByTagName("input")[0];
+      console.log(myInput.type);
+      let myInput2 = document.getElementsByTagName("input")[1];
+      console.log(myInput2.type);
+      console.log(myInput2.name);
+      console.log(myInput2.getAttribute("test"));
+      myInput2.setAttribute("mtAttr", "valueblalalal");
+      console.log(myInput2.dataset.item);
+      console.log(myInput2.dataset.myItem);
+      /*let body = document.body;
+      //console.log(body);
+      let p = document.getElementsByTagName("p")[0];
+      p.style.backgroundColor = "red";
+      let my_p = document.getElementById("my_p");
+      my_p.style.color = "red";
+      let my_p_2 = document.getElementsByClassName("my_p_class")[0];
+      my_p_2.style.color = "green";
+      let my_p_3 = document.querySelector("div p.my_p_class_3");
+      my_p_3.style.fontSize = "24px";
+      my_p_3.textContent = "salaam";
+      my_p_3.innerHTML = "<h4>salaam</h4>";
+      */
+    </script>
+  </body>
+</html>
