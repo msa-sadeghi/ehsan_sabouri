@@ -5,7 +5,6 @@ from bullet import Bullet
 from grenade import Grenade
 import random
 
-
 class Solider(Sprite):
     def __init__(self, type, x, y, ammo, grenade):
         super().__init__()

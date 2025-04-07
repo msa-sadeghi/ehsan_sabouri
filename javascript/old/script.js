@@ -15,6 +15,7 @@ function usernameBlur(){
         span1.style.display = 'none'
         inputs[0].style.border = 0
     }
+    
 }
 function passwordFocus(){
     console.log('Focus username')

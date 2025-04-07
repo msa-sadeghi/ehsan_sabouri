@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="login-page">
         <div class="form">
-                <input type="text" placeholder="username" class="username" onfocus="usernameFocus()" onblur="usernameBlur()" />
-                <span id="span1"></span>
-                <input type="password" placeholder="password" class="password" onfocus="passwordFocus()" onblur="passwordBlur()" />
+                <!-- <input type="text" placeholder="username" class="username" onkeypress="keyLog()" /> -->
+                <!-- <input type="text" placeholder="username" class="username" onkeydown="keyLog()" /> -->
+                <input type="text" placeholder="username" class="username" onkeyup="keyLog()" />
+                <input type="password" placeholder="password" class="password" />
                 <button>login</button>
                 <p class="message">Not registered? <a>Create an account</a></p>
         </div>
