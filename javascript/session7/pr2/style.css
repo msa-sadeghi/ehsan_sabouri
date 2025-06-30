@@ -32,7 +32,9 @@ body {
   .delete {
     cursor: pointer;
   }
-  
+  i{
+    cursor: pointer;
+  }
   
   .filtered{
     display: none !important;
