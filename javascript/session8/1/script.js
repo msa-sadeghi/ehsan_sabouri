@@ -1,7 +1,9 @@
 const contextMenu = document.getElementById("contextMenu")
 
-function myFunction(){
-    console.log("blalaalal")
+function myFunction(event){
+    event.preventDefault()
+    if(contextMenu.style.display === 'none'){
+        contextMenu.style.display = 'block'
+    }
 }
-
-document.body.addEventListener("click", myFunction)
+document.addEventListener("contextmenu", myFunction)
