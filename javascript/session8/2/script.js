@@ -20,9 +20,18 @@ function generateNewNote(){
     newNoteP.innerHTML = inputFieldElement.value
     newNoteP.className = 'card-text p-3'
     newDiv.append(newNoteP)
-
+    newDiv.addEventListener('click', function(e){
+        e.target.parentElement.remove()
+    })
     listedElement.append(newDiv)
 
 }
+
+btnDelete.addEventListener('click', function(e){
+    inputFieldElement.value = ''
+    inputFieldElement.style.backgroundColor = '#fff'
+})
+
+
 
 btnSave.addEventListener('click', generateNewNote)
