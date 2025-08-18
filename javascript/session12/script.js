@@ -1,12 +1,17 @@
-function insertName(){
-    localStorage.setItem('name',  'sara')
-}
+const switchElement = document.querySelector('.switch')
+switchElement.addEventListener('click', function(){
+    document.body.classList.toggle('dark')
+    if(document.body.className.includes('dark')){
 
-function getName(){
-    let localName = localStorage.getItem('name')
-    console.log(localName)
-}
+        localStorage.setItem('theme',  'dark')
+    }else{
+        localStorage.setItem('theme', 'light')
+    }
+})
 
-function clearData(){
-    localStorage.clear()
+window.onload = function(){
+    let t = localStorage.getItem('theme')
+    if(t === 'dark'){
+        document.body.classList.add('dark')
+    }
 }
