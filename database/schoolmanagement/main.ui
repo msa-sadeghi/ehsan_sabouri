@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1067</width>
+    <height>815</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1067</width>
+    <height>815</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1067</width>
+    <height>815</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>School mnagement</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>180</y>
+      <width>671</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>B Titr</family>
+      <pointsize>27</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>مدیریت دانش آموزان</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1067</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuStudents">
+    <property name="title">
+     <string>Students</string>
+    </property>
+    <addaction name="actionManage_Students"/>
+   </widget>
+   <widget class="QMenu" name="menuClasses">
+    <property name="title">
+     <string>Classes</string>
+    </property>
+    <addaction name="actionManage_Classes"/>
+   </widget>
+   <widget class="QMenu" name="menuSubjects">
+    <property name="title">
+     <string>Subjects</string>
+    </property>
+    <addaction name="actionManage_Subjects"/>
+   </widget>
+   <widget class="QMenu" name="menuEnrollments">
+    <property name="title">
+     <string>Enrollments</string>
+    </property>
+    <addaction name="actionEnroll_Students"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuStudents"/>
+   <addaction name="menuClasses"/>
+   <addaction name="menuSubjects"/>
+   <addaction name="menuEnrollments"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionManage_Students">
+   <property name="text">
+    <string>Manage Students</string>
+   </property>
+  </action>
+  <action name="actionManage_Classes">
+   <property name="text">
+    <string>Manage Classes</string>
+   </property>
+  </action>
+  <action name="actionManage_Subjects">
+   <property name="text">
+    <string>Manage Subjects</string>
+   </property>
+  </action>
+  <action name="actionEnroll_Students">
+   <property name="text">
+    <string>Enroll Students</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
