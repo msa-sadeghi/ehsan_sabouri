@@ -49,6 +49,7 @@
     </property>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -94,7 +95,6 @@
    <addaction name="menuSubjects"/>
    <addaction name="menuEnrollments"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
@@ -118,6 +118,16 @@
   <action name="actionEnroll_Students">
    <property name="text">
     <string>Enroll Students</string>
+   </property>
+  </action>
+  <action name="actionddd">
+   <property name="text">
+    <string>ddd</string>
+   </property>
+  </action>
+  <action name="actiondddd">
+   <property name="text">
+    <string>dddd</string>
    </property>
   </action>
  </widget>
