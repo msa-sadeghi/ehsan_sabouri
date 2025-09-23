@@ -43,4 +43,6 @@ class StudentForm(QDialog):
         
         self.load_students()
         
-        
+        self.ui.lineEdit_firstname.clear()
+        self.ui.lineEdit_lastname.clear()
+        self.ui.lineEdit_classid.clear()
