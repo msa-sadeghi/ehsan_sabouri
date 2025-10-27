@@ -11,6 +11,8 @@ class StudentForm(QDialog):
         self.db = Database()
         self.load_students()
         self.ui.pushButton_add_student.clicked.connect(self.add_student)
+        self.ui.pushButton_delete_student.clicked.connect(self.delete_student)
+        self.ui.pushButton_edit_student.clicked.connect(self.edit_student)
 
     def load_students(self):
         self.db.execute("SELECT id, first_name, last_name,class_id FROM students ORDER BY id")
@@ -46,3 +48,21 @@ class StudentForm(QDialog):
         self.ui.lineEdit_firstname.clear()
         self.ui.lineEdit_lastname.clear()
         self.ui.lineEdit_classid.clear()
+
+    def delete_student(self):
+        selected = self.ui.tableWidget_students.currentRow()
+        student_id = self.ui.tableWidget_students.item(selected, 0).text()
+        self.db.execute('DELETE FROM students WHERE id=%s', (student_id,))
+        self.load_students()
+
+    def edit_student(self):
+        selected = self.ui.tableWidget_students.currentRow()
+        student_id = self.ui.tableWidget_students.item(selected, 0).text()
+        firstname = self.ui.lineEdit_firstname.text()
+        lastname = self.ui.lineEdit_lastname.text()
+        classid = self.ui.lineEdit_classid.text()
+
+        self.db.execute('UPDATE students SET first_name=%s, last_name=%s, class_id=%s WHERE id = %s',
+                        (firstname, lastname, classid, student_id))
+    
+        self.load_students()
