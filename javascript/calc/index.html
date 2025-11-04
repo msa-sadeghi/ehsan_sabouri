@@ -1,0 +1,141 @@
+<div class="calculator-container">
+        <h1>🧮 ماشین‌حساب پیشرفته با توابع</h1>
+        
+        <div class="calculator-grid">
+            <!-- عملیات پایه -->
+            <div class="calc-section">
+                <h3>عملیات پایه</h3>
+                <div class="input-group">
+                    <label>عدد اول:</label>
+                    <input type="number" id="basicNum1" placeholder="مثال: 10">
+                </div>
+                <div class="input-group">
+                    <label>عدد دوم:</label>
+                    <input type="number" id="basicNum2" placeholder="مثال: 5">
+                </div>
+                <div class="input-group">
+                    <label>عملگر:</label>
+                    <select id="basicOp">
+                        <option value="add">جمع (+)</option>
+                        <option value="subtract">تفریق (-)</option>
+                        <option value="multiply">ضرب (×)</option>
+                        <option value="divide">تقسیم (÷)</option>
+                        <option value="power">توان (^)</option>
+                        <option value="mod">باقیمانده (%)</option>
+                    </select>
+                </div>
+                <button onclick="calculateBasic()">محاسبه</button>
+                <div id="basicResult" class="result"></div>
+            </div>
+            
+            <!-- عملیات علمی -->
+            <div class="calc-section">
+                <h3>عملیات علمی</h3>
+                <div class="input-group">
+                    <label>عدد:</label>
+                    <input type="number" id="sciNum" placeholder="مثال: 16">
+                </div>
+                <div class="input-group">
+                    <label>عملیات:</label>
+                    <select id="sciOp">
+                        <option value="sqrt">جذر</option>
+                        <option value="square">مربع</option>
+                        <option value="cube">مکعب</option>
+                        <option value="abs">قدر مطلق</option>
+                        <option value="factorial">فاکتوریل</option>
+                    </select>
+                </div>
+                <button onclick="calculateScientific()">محاسبه</button>
+                <div id="sciResult" class="result"></div>
+            </div>
+            
+            <!-- آمار و میانگین -->
+            <div class="calc-section">
+                <h3>آمار اعداد</h3>
+                <div class="input-group">
+                    <label>اعداد (با کاما جدا کنید):</label>
+                    <input type="text" id="statsNums" placeholder="مثال: 5,10,15,20,25">
+                </div>
+                <button onclick="calculateStats()">محاسبه آمار</button>
+                <div id="statsResult" class="result"></div>
+            </div>
+            
+            <!-- تبدیل واحد -->
+            <div class="calc-section">
+                <h3>تبدیل دما</h3>
+                <div class="input-group">
+                    <label>دما:</label>
+                    <input type="number" id="tempValue" placeholder="مثال: 25">
+                </div>
+                <div class="input-group">
+                    <label>از:</label>
+                    <select id="tempFrom">
+                        <option value="celsius">سلسیوس</option>
+                        <option value="fahrenheit">فارنهایت</option>
+                        <option value="kelvin">کلوین</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>به:</label>
+                    <select id="tempTo">
+                        <option value="fahrenheit">فارنهایت</option>
+                        <option value="celsius">سلسیوس</option>
+                        <option value="kelvin">کلوین</option>
+                    </select>
+                </div>
+                <button onclick="convertTemperature()">تبدیل</button>
+                <div id="tempResult" class="result"></div>
+            </div>
+            
+            <!-- محاسبه وام -->
+            <div class="calc-section">
+                <h3>محاسبه وام</h3>
+                <div class="input-group">
+                    <label>مبلغ وام:</label>
+                    <input type="number" id="loanAmount" placeholder="1000000">
+                </div>
+                <div class="input-group">
+                    <label>نرخ سود سالانه (%):</label>
+                    <input type="number" id="interestRate" placeholder="18">
+                </div>
+                <div class="input-group">
+                    <label>مدت (ماه):</label>
+                    <input type="number" id="loanMonths" placeholder="12">
+                </div>
+                <button onclick="calculateLoan()">محاسبه قسط</button>
+                <div id="loanResult" class="result"></div>
+            </div>
+            
+            <!-- محاسبه تخفیف -->
+            <div class="calc-section">
+                <h3>محاسبه تخفیف</h3>
+                <div class="input-group">
+                    <label>قیمت اصلی:</label>
+                    <input type="number" id="discountPrice" placeholder="500000">
+                </div>
+                <div class="input-group">
+                    <label>درصد تخفیف:</label>
+                    <input type="number" id="discountPercent" placeholder="20">
+                </div>
+                <button onclick="calculateDiscount()">محاسبه</button>
+                <div id="discountResult" class="result"></div>
+            </div>
+        </div>
+        
+        <!-- تاریخچه محاسبات -->
+        <div class="history-section">
+            <h3>📋 تاریخچه محاسبات</h3>
+            <div id="historyList" class="history-list"></div>
+            <button class="clear-history" onclick="clearHistory()">پاک کردن تاریخچه</button>
+        </div>
+        
+        <!-- اطلاعات -->
+        <div class="info-box">
+            <h4>💡 درباره این پروژه</h4>
+            <p>
+                این ماشین‌حساب با استفاده از توابع جاوااسکریپت ساخته شده است. 
+                شامل توابع Function Declaration، Function Expression و Arrow Functions می‌باشد.
+                هر عملیات در یک تابع جداگانه پیاده‌سازی شده که قابلیت استفاده مجدد و نگهداری را افزایش می‌دهد.
+            </p>
+        </div>
+    </div>
