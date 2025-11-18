@@ -18,6 +18,7 @@ function addItem(){
     input.value = ''
     input.focus()
     renderList()
+    updateStats()
 
 }
 
@@ -50,4 +51,15 @@ function renderList(){
     `).join('')
     
     listSection.innerHTML = itemsHTML
+}
+
+function updateStats(){
+    const total = shoppinglist.length
+    const purchased = shoppinglist.filter(item => item.purchased).length
+    const pending = total - purchased
+
+
+    document.getElementById('totalItems').textContent = total
+    document.getElementById('purchasedItems').textContent = purchased
+    document.getElementById('pendingItems').textContent = pending
 }
