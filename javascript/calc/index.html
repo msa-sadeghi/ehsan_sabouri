@@ -1,153 +1,247 @@
+
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>لیست خرید تعاملی</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Tahoma', sans-serif;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Tahoma', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #4caf50;
+            color: white;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .list-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 200px;
+        }
+        
+        .list-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .list-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .list-item.purchased {
+            opacity: 0.6;
+            text-decoration: line-through;
+            border-right-color: #4caf50;
+        }
+        
+        .item-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .item-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .item-name {
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            color: #1976d2;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #0d47a1;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <div class="calculator-container">
-        <h1>🧮 ماشین‌حساب پیشرفته با توابع</h1>
+    <div class="container">
+        <h1>🛒 لیست خرید هوشمند</h1>
         
-        <div class="calculator-grid">
-            <!-- عملیات پایه -->
-            <div class="calc-section">
-                <h3>عملیات پایه</h3>
-                <div class="input-group">
-                    <label>عدد اول:</label>
-                    <input type="number" id="basicNum1" placeholder="مثال: 10">
-                </div>
-                <div class="input-group">
-                    <label>عدد دوم:</label>
-                    <input type="number" id="basicNum2" placeholder="مثال: 5">
-                </div>
-                <div class="input-group">
-                    <label>عملگر:</label>
-                    <select id="basicOp">
-                        <option value="add">جمع (+)</option>
-                        <option value="subtract">تفریق (-)</option>
-                        <option value="multiply">ضرب (×)</option>
-                        <option value="divide">تقسیم (÷)</option>
-                        <option value="power">توان (^)</option>
-                        <option value="mod">باقیمانده (%)</option>
-                    </select>
-                </div>
-                <button onclick="calculateBasic()">محاسبه</button>
-                <div id="basicResult" class="result"></div>
-            </div>
-            
-            <!-- عملیات علمی -->
-            <div class="calc-section">
-                <h3>عملیات علمی</h3>
-                <div class="input-group">
-                    <label>عدد:</label>
-                    <input type="number" id="sciNum" placeholder="مثال: 16">
-                </div>
-                <div class="input-group">
-                    <label>عملیات:</label>
-                    <select id="sciOp">
-                        <option value="sqrt">جذر</option>
-                        <option value="square">مربع</option>
-                        <option value="cube">مکعب</option>
-                        <option value="abs">قدر مطلق</option>
-                        <option value="factorial">فاکتوریل</option>
-                    </select>
-                </div>
-                <button onclick="calculateScientific()">محاسبه</button>
-                <div id="sciResult" class="result"></div>
-            </div>
-            
-            <!-- آمار و میانگین -->
-            <div class="calc-section">
-                <h3>آمار اعداد</h3>
-                <div class="input-group">
-                    <label>اعداد (با کاما جدا کنید):</label>
-                    <input type="text" id="statsNums" placeholder="مثال: 5,10,15,20,25">
-                </div>
-                <button onclick="calculateStats()">محاسبه آمار</button>
-                <div id="statsResult" class="result"></div>
-            </div>
-            
-            <!-- تبدیل واحد -->
-            <div class="calc-section">
-                <h3>تبدیل دما</h3>
-                <div class="input-group">
-                    <label>دما:</label>
-                    <input type="number" id="tempValue" placeholder="مثال: 25">
-                </div>
-                <div class="input-group">
-                    <label>از:</label>
-                    <select id="tempFrom">
-                        <option value="celsius">سلسیوس</option>
-                        <option value="fahrenheit">فارنهایت</option>
-                        <option value="kelvin">کلوین</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>به:</label>
-                    <select id="tempTo">
-                        <option value="fahrenheit">فارنهایت</option>
-                        <option value="celsius">سلسیوس</option>
-                        <option value="kelvin">کلوین</option>
-                    </select>
-                </div>
-                <button onclick="convertTemperature()">تبدیل</button>
-                <div id="tempResult" class="result"></div>
-            </div>
-            
-            <!-- محاسبه وام -->
-            <div class="calc-section">
-                <h3>محاسبه وام</h3>
-                <div class="input-group">
-                    <label>مبلغ وام:</label>
-                    <input type="number" id="loanAmount" placeholder="1000000">
-                </div>
-                <div class="input-group">
-                    <label>نرخ سود سالانه (%):</label>
-                    <input type="number" id="interestRate" placeholder="18">
-                </div>
-                <div class="input-group">
-                    <label>مدت (ماه):</label>
-                    <input type="number" id="loanMonths" placeholder="12">
-                </div>
-                <button onclick="calculateLoan()">محاسبه قسط</button>
-                <div id="loanResult" class="result"></div>
-            </div>
-            
-            <!-- محاسبه تخفیف -->
-            <div class="calc-section">
-                <h3>محاسبه تخفیف</h3>
-                <div class="input-group">
-                    <label>قیمت اصلی:</label>
-                    <input type="number" id="discountPrice" placeholder="500000">
-                </div>
-                <div class="input-group">
-                    <label>درصد تخفیف:</label>
-                    <input type="number" id="discountPercent" placeholder="20">
-                </div>
-                <button onclick="calculateDiscount()">محاسبه</button>
-                <div id="discountResult" class="result"></div>
+        <div class="input-section">
+            <input type="text" id="itemInput" placeholder="نام کالا را وارد کنید..." onkeypress="handleKeyPress(event)">
+            <button class="btn-primary" onclick="addItem()">➕ افزودن</button>
+        </div>
+        
+        <div class="filter-section">
+            <button class="btn-primary btn-small" onclick="filterItems('all')">همه</button>
+            <button class="btn-success btn-small" onclick="filterItems('purchased')">خریداری شده</button>
+            <button class="btn-danger btn-small" onclick="filterItems('pending')">باقیمانده</button>
+        </div>
+        
+        <div class="list-section" id="listSection">
+            <div class="empty-state">
+                <div style="font-size: 48px;">📝</div>
+                <p>لیست خرید خالی است</p>
+                <p style="font-size: 14px; margin-top: 10px;">کالای مورد نظر خود را اضافه کنید</p>
             </div>
         </div>
         
-        <!-- تاریخچه محاسبات -->
-        <div class="history-section">
-            <h3>📋 تاریخچه محاسبات</h3>
-            <div id="historyList" class="history-list"></div>
-            <button class="clear-history" onclick="clearHistory()">پاک کردن تاریخچه</button>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-label">کل کالاها</div>
+                <div class="stat-value" id="totalItems">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">خریداری شده</div>
+                <div class="stat-value" id="purchasedItems">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">باقیمانده</div>
+                <div class="stat-value" id="pendingItems">0</div>
+            </div>
         </div>
         
-        <!-- اطلاعات -->
-        <div class="info-box">
-            <h4>💡 درباره این پروژه</h4>
-            <p>
-                این ماشین‌حساب با استفاده از توابع جاوااسکریپت ساخته شده است. 
-                شامل توابع Function Declaration، Function Expression و Arrow Functions می‌باشد.
-                هر عملیات در یک تابع جداگانه پیاده‌سازی شده که قابلیت استفاده مجدد و نگهداری را افزایش می‌دهد.
-            </p>
+        <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
+            <button class="btn-danger" onclick="clearAll()">🗑️ پاک کردن همه</button>
+            <button class="btn-success" onclick="clearPurchased()">✓ پاک کردن خریداری شده‌ها</button>
         </div>
     </div>
-    <script src="./script.js"></script>
+
+    
 </body>
 </html>
