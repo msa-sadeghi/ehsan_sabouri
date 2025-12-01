@@ -119,26 +119,42 @@
 
 // console.log(totalPrice)
 
-let keys = ["name",  "age", "city"]
-let values = ["sara", 32, "teh"]
+// let keys = ["name",  "age", "city"]
+// let values = ["sara", 32, "teh"]
 
-let obj = keys.reduce((object, key, index)=>{
-    object[key] = values[index]
-    return object
-}
-, {})
+// let obj = keys.reduce((object, key, index)=>{
+//     object[key] = values[index]
+//     return object
+// }
+// , {})
 
-console.log(obj)
+// console.log(obj)
 
-let users = [
-    {id:1, name:"sara"},
-    {id:2, name:"artin"},
-    {id:3, name:"arman"}
-]
+// let users = [
+//     {id:1, name:"sara"},
+//     {id:2, name:"artin"},
+//     {id:3, name:"arman"}
+// ]
 
-let t = users.reduce((obj, user)=>{
-    obj[user.id] = user.name
-    return obj
-},
- {})
- console.log(t)
+// let t = users.reduce((obj, user)=>{
+//     obj[user.id] = user.name
+//     return obj
+// },
+//  {})
+//  console.log(t)
+
+
+let numbers = [45, 23, 89, 12, 67, 34]
+
+numbers.sort((a, b) => a - b)
+console.log(numbers)
+
+numbers.sort((a, b) => b - a)
+console.log(numbers)
+
+
+// let max = numbers.reduce((maximum, current) => {
+//     return current >  maximum ? current : maximum
+// }, numbers[0])
+
+// console.log(max)
