@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="login-page">
-        <div class="form">
-                <input type="text" placeholder="username" class="username" onfocus="usernameFocus()" onblur="usernameBlur()" />
-                <span id="span1"></span>
-                <input type="password" placeholder="password" class="password" onfocus="passwordFocus()" onblur="passwordBlur()" />
-                <button>login</button>
-                <p class="message">Not registered? <a>Create an account</a></p>
-        </div>
+    <div class="container">
+        <h1>به وبسایت من خوش آمدید!</h1>
+        <p>لطفا نام خود را وارد کنید:</p>
+        <input type="text" id="n1">
+        <br>
+        <p>لطفا سن خود را وارد کنید:</p>
+        <input type="text" id="n2">
+        <br>
+        <button onclick="showWelcome()">شروع کنید</button>
+        <div id="welcomeMessage"></div>
+       
     </div>
     <script src="./script.js"></script>
 </body>

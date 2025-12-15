@@ -12,6 +12,19 @@ function addProduct(){
          productStock, productDesc)
                     products.push(p)
     renderProducts()
+    saveToStorage()
+}
+
+function loadFromStorage(){
+    let stored = localStorage.getItem('products')
+    let parsed = JSON.parse(stored)
+    products = parsed.map(p=>{
+        let product = new Product
+    })
+}
+
+function saveToStorage(){
+    localStorage.setItem('products', JSON.stringify(products))
 }
 
 
@@ -56,3 +69,6 @@ function renderProducts(){
                 </div>
         `)
 }
+
+loadFromStorage()
+renderProducts()
