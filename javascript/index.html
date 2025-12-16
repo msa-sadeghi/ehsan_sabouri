@@ -2,97 +2,21 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>رویدادهای فرم</title>
-    <style>
-        body { font-family: Tahoma; padding: 20px; max-width: 600px; margin: 0 auto; }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            font-family: Tahoma;
-        }
-        input:focus {
-            border-color: #667eea;
-            outline: none;
-        }
-        input.error {
-            border-color: #f44336;
-        }
-        input.valid {
-            border-color: #4caf50;
-        }
-        .error-message {
-            color: #f44336;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .info {
-            padding: 15px;
-            background: #e3f2fd;
-            border-radius: 5px;
-            margin-top: 20px;
-            display: none;
-        }
-    </style>
+    <title>نقاشی با ماوس</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>فرم تعاملی</h1>
+    <h1>نقاشی با ماوس</h1>
+    <canvas id="canvas" width="800" height="400"></canvas>
     
-    <form id="myForm">
-        <div class="form-group">
-            <label>نام:</label>
-            <input type="text" id="name" required>
-            <div class="error-message" id="nameError">نام باید حداقل 3 حرف باشد</div>
-        </div>
-        
-        <div class="form-group">
-            <label>ایمیل:</label>
-            <input type="email" id="email" required>
-            <div class="error-message" id="emailError">ایمیل نامعتبر است</div>
-        </div>
-        
-        <div class="form-group">
-            <label>سن:</label>
-            <input type="number" id="age" min="18" max="100">
-            <div class="error-message" id="ageError">سن باید بین 18 تا 100 باشد</div>
-        </div>
-        
-        <div class="form-group">
-            <label>کشور:</label>
-            <select id="country">
-                <option value="">انتخاب کنید</option>
-                <option value="iran">ایران</option>
-                <option value="usa">آمریکا</option>
-                <option value="uk">انگلیس</option>
-            </select>
-        </div>
-        
-        <button type="submit">ارسال</button>
-    </form>
+    <div class="controls">
+        <button onclick="changeColor('black')">⚫ سیاه</button>
+        <button onclick="changeColor('red')">🔴 قرمز</button>
+        <button onclick="changeColor('blue')">🔵 آبی</button>
+        <button onclick="changeColor('green')">🟢 سبز</button>
+        <button onclick="clearCanvas()">🗑️ پاک کردن</button>
+    </div>
     
-    <div class="info" id="info"></div>
-    
-    
+  <script src="app.js"></script>
 </body>
 </html>
