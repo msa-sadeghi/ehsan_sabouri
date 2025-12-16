@@ -1,14 +1,14 @@
 body { font-family: Tahoma; padding: 20px; text-align: center; }
-        #canvas {
-            border: 2px solid #333;
-            cursor: crosshair;
-            background: white;
-        }
-        .controls {
-            margin-top: 15px;
-        }
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-        }
+#canvas {
+    border: 2px solid #333;
+    cursor: crosshair;
+    background: white;
+}
+.controls {
+    margin-top: 15px;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}

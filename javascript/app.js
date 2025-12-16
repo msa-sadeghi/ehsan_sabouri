@@ -1,26 +1,30 @@
-const nameInput = document.getElementById('name');
-const button = document.querySelector('button');
-const nameError = document.getElementById('nameError');
-const info = document.getElementById('info');
+let canvas = document.getElementById('canvas')
+let ctx = canvas.getContext('2d')
+let currentColor = 'black'
+let isDrawing = false
 
-button.addEventListener('click', (e) => {
-    e.preventDefault()
-    const name = nameInput.value.trim();
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailPattern.test(name)) {
-        nameError.style.display = 'block';
-        nameError.textContent = 'نام باید حداقل ۳ کاراکتر باشد.';
-    }else{
-        nameError.style.display = 'none';
-    }
-
-    let newDiv = document.createElement('div')
-    newDiv.innerHTML = `<h1>اسم:</h1>
-    
-    `
-
-    info.append(newDiv)
-    info.style.display = "block"
-
-
+canvas.addEventListener('mousedown', (e)=>{
+    isDrawing = true
+    ctx.beginPath()
+    ctx.moveTo(e.offsetX, e.offsetY)
 })
+
+canvas.addEventListener('mousemove', (e)=>{
+    if(isDrawing){
+        ctx.lineTo(e.offsetX, e.offsetY)
+        ctx.strokeStyle = currentColor
+        ctx.stroke()
+    }
+})
+canvas.addEventListener('mouseup', (e)=>{
+    isDrawing = false
+})
+
+
+function changeColor(color){
+    currentColor = color
+}
+
+function clearCanvas(){
+    ctx.clearRect(0,0, canvas.width, canvas.height)
+}
