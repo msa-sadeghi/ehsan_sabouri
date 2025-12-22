@@ -1,14 +1,43 @@
-body { font-family: Tahoma; padding: 20px; text-align: center; }
-#canvas {
-    border: 2px solid #333;
-    cursor: crosshair;
-    background: white;
-}
-.controls {
-    margin-top: 15px;
-}
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-}
+ body {
+            font-family: Tahoma;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        #countdown {
+            font-size: 120px;
+            color: #667eea;
+            margin: 30px 0;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            font-weight: bold;
+        }
+        
+        .btn-start {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-stop {
+            background: #f44336;
+            color: white;
+        }

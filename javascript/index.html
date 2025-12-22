@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>نقاشی با ماوس</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>نقاشی با ماوس</h1>
-    <canvas id="canvas" width="800" height="400"></canvas>
-    
-    <div class="controls">
-        <button onclick="changeColor('black')">⚫ سیاه</button>
-        <button onclick="changeColor('red')">🔴 قرمز</button>
-        <button onclick="changeColor('blue')">🔵 آبی</button>
-        <button onclick="changeColor('green')">🟢 سبز</button>
-        <button onclick="clearCanvas()">🗑️ پاک کردن</button>
+    <div class="container">
+        <h1>⏱️ شمارش معکوس</h1>
+        <div id="countdown">10</div>
+        <button class="btn-start" onclick="startCountdown()">شروع</button>
+        <button class="btn-stop" onclick="stopCountdown()">توقف</button>
     </div>
     
   <script src="app.js"></script>

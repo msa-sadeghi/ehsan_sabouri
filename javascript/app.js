@@ -1,30 +1,35 @@
-let canvas = document.getElementById('canvas')
-let ctx = canvas.getContext('2d')
-let currentColor = 'black'
-let isDrawing = false
-
-canvas.addEventListener('mousedown', (e)=>{
-    isDrawing = true
-    ctx.beginPath()
-    ctx.moveTo(e.offsetX, e.offsetY)
-})
-
-canvas.addEventListener('mousemove', (e)=>{
-    if(isDrawing){
-        ctx.lineTo(e.offsetX, e.offsetY)
-        ctx.strokeStyle = currentColor
-        ctx.stroke()
-    }
-})
-canvas.addEventListener('mouseup', (e)=>{
-    isDrawing = false
-})
-
-
-function changeColor(color){
-    currentColor = color
+let currentnumber = 10
+let countdownElemet = document.getElementById('countdown')
+let interval = null
+function startCountdown(){
+    currentnumber = 10
+    countdownElemet.textContent = currentnumber
+    interval = setInterval(()=>{
+        currentnumber--
+        countdownElemet.textContent = currentnumber
+        if(currentnumber === 0){
+            clearInterval(interval)
+            setTimeout(()=>{
+                countdownElemet.textContent = "s"
+                setTimeout(()=>{
+                    
+                    countdownElemet.textContent = "10"
+                }, 2000)
+            }, 500)
+        }
+    }, 1000)
 }
 
-function clearCanvas(){
-    ctx.clearRect(0,0, canvas.width, canvas.height)
+function stopCountdown(){
+    if(interval !== null){
+        clearInterval(interval)
+        interval = null
+        countdownElemet.textContent = "s"
+                setTimeout(()=>{
+                    
+                    countdownElemet.textContent = "10"
+                    currentnumber = 10
+                }, 2000)
+
+    }
 }
