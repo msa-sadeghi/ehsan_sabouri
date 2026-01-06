@@ -2,11 +2,28 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
- 
+    <title>مدیریت کاربران با Fetch API</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>📋 مدیریت کاربران</h1>
     
+    <div class="controls">
+        <button onclick="loadUsers()">🔄 بارگذاری کاربران</button>
+        <button onclick="loadUsersPosts()">📝 کاربران + پست‌ها</button>
+        <button onclick="searchUser()">🔍 جستجوی کاربر</button>
+    </div>
     
+    <div id="error" class="error" style="display: none;"></div>
+    
+    <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>در حال بارگذاری...</p>
+    </div>
+    
+    <div id="usersContainer" class="users-grid"></div>
+
     <script src="app.js"></script>
+  
 </body>
 </html>
