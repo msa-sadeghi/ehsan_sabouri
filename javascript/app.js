@@ -1,60 +1,41 @@
-// fetch('https://jsonplaceholder.typicode.com/users')
-// .then(
-//     response => response.json()
-// )
-// .then(data => console.log(data))
-// .catch(error => console.log("error"))
+const container = document.getElementById("usersContainer")
+const loadingDev = document.getElementById("loading")
+const errorDiv = document.getElementById("error")
 
+function showLoading(show = true){
+    loadingDev.style.display = show ? 'block' : 'none'
 
+}
 
-async function  getUsers(url) {
+function showError(message){
+    errorDiv.style.display = "block"
+    errorDiv.textContent = message
+}
+
+async function loadUsers() {
+    showLoading(true)
     try{
-        const response = await fetch(url)
-    if(!response.ok){
-        throw new Error("er")
-    }
-    const users =  await response.json()
-
-    console.log(users)
-    }
-    catch(error){
-        console.log(error.message)
-    }
-}
-
-getUsers('https://jsonplaceholder.typicode.com/users')
-
-async function createPost() {
-    
-    const newPost = {
-        title:'test post',
-        body:'this is a test post',
-        userId:1
-    }
-
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts'
-        ,{
-            method:'POST',
-            headers :{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(newPost)
+        const response = await fetch("https://jsonplaceholder.typicode.com/users")
+        if(!response.ok){
+            throw new Error("error")
         }
-    )
-    const data = await response.json()
-    console.log(data)
+        const users = await response.json()
+        displayUsers(users)
+    }catch(error){
+        showError(error.message)
+    }finally{
+        showLoading(false)
+    }
 }
-
-createPost()
-
-// تمرین ۱
-
-// یک تابع بنویس:
-
-// لیست پست‌ها را بگیرد
-
-// فقط عنوان‌ها را چاپ کند
-
-// تمرین ۲
-
-// یک پست با عنوان دلخواه خودت ارسال کن
+function displayUsers(users){
+    users.map(user=>{
+        const userCard = document.createElement("div")
+        userCard.classList.add("user-card")
+        const h3 = document.createElement("h3")
+        h3.textContent = user.name
+        const userName = document.createElement("p")
+        userName.textContent = user.username
+        userCard.append(h3, userName)
+        container.append(userCard)
+    })
+}
