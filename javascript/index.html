@@ -2,28 +2,36 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مدیریت کاربران با Fetch API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اپلیکیشن آب‌وهوا</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>📋 مدیریت کاربران</h1>
-    
-    <div class="controls">
-        <button onclick="loadUsers()">🔄 بارگذاری کاربران</button>
-        <button onclick="loadUsersPosts()">📝 کاربران + پست‌ها</button>
-        <button onclick="searchUser()">🔍 جستجوی کاربر</button>
+    <div class="container">
+        <div class="header">
+            <h1>🌤️ اپلیکیشن آب‌وهوا</h1>
+            <p>وضعیت آب و هوای شهر خود را بررسی کنید</p>
+        </div>
+        
+        <div class="search-box">
+            <div class="search-input">
+                <input type="text" id="cityInput" placeholder="نام شهر را وارد کنید...">
+                <button onclick="searchWeather()">🔍 جستجو</button>
+            </div>
+            
+            <div class="quick-cities">
+                <button class="city-btn" onclick="getWeather('Tehran')">تهران</button>
+                <button class="city-btn" onclick="getWeather('Shiraz')">شیراز</button>
+                <button class="city-btn" onclick="getWeather('Isfahan')">اصفهان</button>
+                <button class="city-btn" onclick="getWeather('Mashhad')">مشهد</button>
+                <button class="city-btn" onclick="getWeather('Tabriz')">تبریز</button>
+            </div>
+        </div>
+        
+        <div id="weatherContainer"></div>
     </div>
-    
-    <div id="error" class="error" style="display: none;"></div>
-    
-    <div id="loading" class="loading" style="display: none;">
-        <div class="spinner"></div>
-        <p>در حال بارگذاری...</p>
-    </div>
-    
-    <div id="usersContainer" class="users-grid"></div>
 
-    <script src="app.js"></script>
-  
+   <script src="app.js"></script>
+        
 </body>
 </html>
