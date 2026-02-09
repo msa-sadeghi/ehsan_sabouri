@@ -22,3 +22,9 @@ function renderItems(item){
     weatherContainer.append(cardItem)    
    
 }
+
+
+function searchWeather(){
+    let cityInputValue = document.getElementById("cityInput")
+    getWeather(cityInputValue)
+}
