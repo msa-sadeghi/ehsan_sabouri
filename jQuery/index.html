@@ -9,13 +9,27 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 </head>
 <body>
-    <button id="showBtn">نمایش پیام</button>
-    <button id="hideBtn">مخفی کردن پیام</button>
-    <button id="toggleBtn">تغییر وضعیت</button>
-    
-    <div id="message-box">
-        این یک پیام مهم است!
+    <<div class="container">
+        <h2>بخش اول</h2>
+        <p>پاراگراف 1 (فرزند مستقیم)</p>
+        <p>پاراگراف 2 (فرزند مستقیم)</p>
+        <div class="inner">
+            <p>پاراگراف 3 (فرزند غیرمستقیم - نوه)</p>
+        </div>
     </div>
+    
+    <div class="container">
+        <h2>بخش دوم</h2>
+        <p>پاراگراف بعد از h2</p>
+        <span>متن span</span>
+        <p>پاراگراف دیگر</p>
+    </div>
+
+    <button id="directChild">فرزندان مستقیم div</button>
+    <button id="allDesc">تمام فرزندان div</button>
+    <button id="adjacent">پاراگراف بعد از h2</button>
+    <button id="siblings">تمام پاراگراف‌های بعد h2</button>
+
 
     <script src="app.js"></script>
 </body>

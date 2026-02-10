@@ -1,12 +1,4 @@
- #message-box {
-            padding: 20px;
-            background-color: #4CAF50;
-            color: white;
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-        }
+body { font-family: Tahoma; padding: 20px; }
+        .container { border: 2px solid black; padding: 15px; margin: 10px; }
+        p { margin: 10px 0; padding: 5px; background-color: lightgray; }
+        button { margin: 5px; padding: 10px; }
