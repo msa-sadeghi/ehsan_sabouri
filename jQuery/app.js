@@ -1,3 +1,11 @@
-$(document).ready(function(){
-    alert("Hello, welcome to jQuery")
+$(function(){
+   $('#showBtn').click(function(){
+    $('#message-box').show(500)
+   })
+   $('#hideBtn').click(function(){
+    $('#message-box').hide(500)
+   })
+   $('#toggleBtn').click(function(){
+    $('#message-box').toggle(500)
+   })
 })

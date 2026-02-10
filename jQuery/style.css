@@ -1,0 +1,12 @@
+ #message-box {
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
