@@ -1,14 +1,13 @@
 import './App.css'
-import ProductCard from './Counter'
+import ProductList from './ProductList'
 
 
 function App() {
-
   return (
-    <>
-   <ProductCard/>
-    
-    </>
+    <div className="container">
+      <h1>Online Shop</h1>
+      <ProductList/>
+    </div>
     
   )
 }
