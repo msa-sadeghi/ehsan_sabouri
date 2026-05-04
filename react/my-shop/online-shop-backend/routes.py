@@ -8,8 +8,26 @@ products_routes = Blueprint("products", __name__)
 
 @products_routes.route("/products", methods=["GET"])
 def get_products():
-    products = Product.query.all()
-    return jsonify([p.to_dict() for p in products])
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 10, type=int)
+
+    if per_page > 100:
+        per_page = 100
+    products = Product.query.paginate(page=page, per_page=per_page, error_out=False)
+    items = [p.to_dict() for p in products]
+    return jsonify(
+        {
+            "items": items,
+            "page": products.page,
+            "per_page": per_page,
+            "total_items": products.total,
+            "total_pages": products.pages,
+            "has_next": products.has_next,
+            "has_prev": products.has_prev,
+            "next_page": products.next_num if products.has_next else None,
+            "prev_page": products.prev_num if products.has_prev else None,
+        }
+    )
 
 
 @products_routes.route("/products", methods=["POST"])
