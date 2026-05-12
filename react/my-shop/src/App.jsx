@@ -1,12 +1,12 @@
 import './App.css'
-import ProductList from './ProductList'
+import ProductsPage from './components/ProductsPage'
 
 
 function App() {
   return (
     <div className="container">
       <h1>Online Shop</h1>
-      <ProductList/>
+      <ProductsPage/>
     </div>
     
   )
