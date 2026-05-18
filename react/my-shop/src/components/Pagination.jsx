@@ -1,9 +1,9 @@
-function Pagination({page}){
+function Pagination({page, handlePrev, handleNext}){
     return(
         <div>
-            <button>Previous</button>
+            <button onClick={handlePrev}>Previous</button>
             <button>Page: {page}</button>
-            <button>Next</button>
+            <button onClick={handleNext}>Next</button>
         </div>
     )
 }

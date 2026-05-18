@@ -14,6 +14,7 @@ def get_products():
     if per_page > 100:
         per_page = 100
     products = Product.query.paginate(page=page, per_page=per_page, error_out=False)
+
     items = [p.to_dict() for p in products]
     return jsonify(
         {

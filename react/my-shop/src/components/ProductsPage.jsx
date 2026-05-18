@@ -1,5 +1,5 @@
 import { fetchProducts, deleteProduct } from "../api/product"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
 import Pagination from "./Pagination"
 function ProductsPage(){
@@ -11,10 +11,12 @@ function ProductsPage(){
         const data = await fetchProducts(currentPage, perPage)
         setProducts(data.items)
         setPage(data.page)
-        setTotalPages(data.totalPages)
+        setTotalPages(data.total_pages)
         
     }
-    loadProducts(page)
+    useEffect(()=>{
+        loadProducts(page)
+    }, [page])
     function handlePrev(){
         if (page > 1) setPage((prev) => prev - 1)
         }
@@ -29,6 +31,8 @@ function ProductsPage(){
             ))}
             <Pagination
             page={page}
+            handlePrev={handlePrev}
+            handleNext={handleNext}
             />
         </div>
     )
