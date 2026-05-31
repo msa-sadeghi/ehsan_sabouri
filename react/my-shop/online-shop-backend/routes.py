@@ -31,7 +31,7 @@ def get_products():
     )
 
 
-@products_routes.route("/products", methods=["POST"])
+@products_routes.route("/products/", methods=["POST"])
 def create_product():
     if not request.is_json:
         return error_response("Content-Type must be application/json", 415)

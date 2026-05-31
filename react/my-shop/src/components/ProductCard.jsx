@@ -1,4 +1,4 @@
-function ProductCard({product}){
+function ProductCard({product, handleDelete}){
     return(
         <div style={styles.card}>
             <img style={styles.image} src={product.image} alt="" />
@@ -8,7 +8,7 @@ function ProductCard({product}){
             <p><strong>Status:
                 {product.in_stock ? 'In Stock' : "Out of stock"}
                 </strong></p>
-            <button>Delete</button>
+            <button onClick={()=> handleDelete(product.id)}>Delete</button>
         </div>
     )
 }
