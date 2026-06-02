@@ -1,19 +1,44 @@
+import { useState } from "react";
+
 function ProductCard({ product, handleDelete }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({ ...product });
+
+  const handleSave = () => {};
   return (
-    <div style={styles.card}>
-      <img style={styles.image} src={product.image} alt="" />
-      <h3>{product.name}</h3>
-      <p>{product.description}</p>
-      <p>
-        <strong>Price: {product.price}</strong>
-      </p>
-      <p>
-        <strong>
-          Status:
-          {product.in_stock ? "In Stock" : "Out of stock"}
-        </strong>
-      </p>
-      <button onClick={() => handleDelete(product.id)}>Delete</button>
+    <div>
+      {isEditing ? (
+        <div style={styles.card}>
+          <label htmlFor="">name</label>
+          <input type="text" name="name" value={formData.name} />
+          <br />
+          <label htmlFor="">price</label>
+          <input type="number" name="price" value={formData.price} />
+          <br />
+          <label htmlFor="">in stock</label>
+          <input type="checkbox" name="in_stock" checked={formData.in_stock} />
+          <br />
+          <button onClick={handleSave}>Delete</button>
+          <button onClick={() => setIsEditing(false)}>Edit</button>
+        </div>
+      ) : (
+        <div style={styles.card}>
+          <img style={styles.image} src={product.image} alt="" />
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
+          <p>
+            <strong>Price: {product.price}</strong>
+          </p>
+          <p>
+            <strong>
+              Status:
+              {product.in_stock ? "In Stock" : "Out of stock"}
+            </strong>
+          </p>
+          <button onClick={() => handleDelete(product.id)}>Delete</button>
+          <button onClick={() => setIsEditing(true)}>Edit</button>
+        </div>
+      )}
     </div>
   );
 }
