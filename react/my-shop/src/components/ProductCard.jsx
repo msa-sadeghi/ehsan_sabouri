@@ -18,8 +18,8 @@ function ProductCard({ product, handleDelete }) {
           <label htmlFor="">in stock</label>
           <input type="checkbox" name="in_stock" checked={formData.in_stock} />
           <br />
-          <button onClick={handleSave}>Delete</button>
-          <button onClick={() => setIsEditing(false)}>Edit</button>
+          <button onClick={handleSave}>Save</button>
+          <button onClick={() => setIsEditing(false)}>Back</button>
         </div>
       ) : (
         <div style={styles.card}>
