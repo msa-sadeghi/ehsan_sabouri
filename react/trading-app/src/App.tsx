@@ -15,7 +15,7 @@ function App() {
       setItems(data)
       setLoading(false)
     }
-    
+    getData()
     const intervalID = setInterval(getData, 5000)
     return ()=>clearInterval(intervalID)
   }, [])
