@@ -3,20 +3,45 @@ import { useState } from "react";
 function ProductCard({ product, handleDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({ ...product });
-
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]:
+        e.target.name === "price"
+          ? Number(e.target.value)
+          : e.target.name === "in_stock"
+            ? e.target.checked
+            : e.target.value,
+    });
+  };
   const handleSave = () => {};
   return (
     <div>
       {isEditing ? (
         <div style={styles.card}>
           <label htmlFor="">name</label>
-          <input type="text" name="name" value={formData.name} />
+          <input
+            onChange={handleChange}
+            type="text"
+            name="name"
+            value={formData.name}
+          />
           <br />
           <label htmlFor="">price</label>
-          <input type="number" name="price" value={formData.price} />
+          <input
+            onChange={handleChange}
+            type="number"
+            name="price"
+            value={formData.price}
+          />
           <br />
           <label htmlFor="">in stock</label>
-          <input type="checkbox" name="in_stock" checked={formData.in_stock} />
+          <input
+            onChange={handleChange}
+            type="checkbox"
+            name="in_stock"
+            checked={formData.in_stock}
+          />
           <br />
           <button onClick={handleSave}>Save</button>
           <button onClick={() => setIsEditing(false)}>Back</button>

@@ -33,3 +33,17 @@ export async function addProduct(data) {
 
   return await response.json();
 }
+// export async function updateProduct(data) {
+//   const response = await fetch(`${BASE_URL}/products/`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(data),
+//   });
+//   if (!response.ok) {
+//     throw new Error("Failed to add product");
+//   }
+
+//   return await response.json();
+// }
