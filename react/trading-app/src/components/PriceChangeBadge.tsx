@@ -1,5 +1,5 @@
 
-export default function PriceChangeBadge({priceChange}) {
+export default function PriceChangeBadge({priceChange} : number) {
   
   const isPositive = priceChange > 0
   const isNegative = priceChange < 0

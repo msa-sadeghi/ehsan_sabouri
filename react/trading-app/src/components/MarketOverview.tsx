@@ -1,5 +1,6 @@
 import PriceChangeBadge from "./PriceChangeBadge"
-export default function MarketOverview({item}) {
+import type { MarketItem } from "./types"
+export default function MarketOverview({item}: MarketItem) {
     const  {pc, py, l18, pcp} = item
     
   return (
